@@ -11,9 +11,14 @@ public class ObjectPoolController : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(1);
             RandomSpawnSlime();
         }
+    }
+
+    public void isDead(GameObject deadSlime)
+    {
+        SlimePool.Add(deadSlime);
     }
 
     void RandomSpawnSlime()

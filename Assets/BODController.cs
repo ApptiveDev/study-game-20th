@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class BODController : MonoBehaviour
@@ -7,6 +8,7 @@ public class BODController : MonoBehaviour
     private Rigidbody2D mRigid;
     private Animator mAnimator;
     private float speed = 5;
+    private int hp = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -26,17 +28,17 @@ public class BODController : MonoBehaviour
             direction = direction + new Vector2(0, 1);
             isWalking = true;
         }
-        else if(Input.GetKey(KeyCode.A))
+        if(Input.GetKey(KeyCode.A))
         {
             direction = direction + new Vector2(-1, 0);
             isWalking = true;
         }
-        else if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S))
         {
             direction = direction + new Vector2(0, -1);
             isWalking = true;
         }
-        else if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
             direction = direction + new Vector2(1, 0);
             isWalking = true;
@@ -50,8 +52,52 @@ public class BODController : MonoBehaviour
 
     }
 
+    public void Damaged()
+    {
+        hp -= 1;
+        mAnimator.SetTrigger("Hurt");
+        print("Attacked");
+        if (hp <= 0)
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(new Vector3(this.mRigid.position.x +this.attackSensorPosX*transform.localScale.x*-1, this.mRigid.position.y + this.attackSensorPosY, 0), new Vector3(this.attackSensorHalfSizeX, this.attackSensorHalfSizeY, 1));
+    }
+
+    private float attackSensorPosX = 2.5f;
+    private float attackSensorPosY = 0;
+    private float attackSensorHalfSizeX = 3;
+    private float attackSensorHalfSizeY = 3;
+
+    IEnumerator Attacking(RaycastHit2D hit)
+    {
+        yield return new WaitForSeconds(0.5f);
+        hit.collider.GetComponent<SlimeController>().Damaged();
+    }
+
     private void Attack()
     {
+        Vector2 curGroundSensorPos = new Vector2(
+        this.mRigid.position.x + this.attackSensorPosX * transform.localScale.x*-1,
+        this.mRigid.position.y + this.attackSensorPosY);
+
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(
+            curGroundSensorPos,
+            new Vector2(attackSensorHalfSizeX, attackSensorHalfSizeY),
+            0,
+            new Vector2(0.0f, 0.0f)); ;
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider.CompareTag("Enemy"))
+            {
+                StartCoroutine(Attacking(hit)); 
+            }
+        }
         mAnimator.SetTrigger("Attack");
     }
 
@@ -59,7 +105,6 @@ public class BODController : MonoBehaviour
     {
         if (isWalking)
         {
-            print(direction);
             mRigid.velocity = speed * direction;
         } else
         {
