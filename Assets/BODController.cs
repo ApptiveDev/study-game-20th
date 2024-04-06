@@ -8,13 +8,17 @@ public class BODController : MonoBehaviour
     private Rigidbody2D mRigid;
     private Animator mAnimator;
     private float speed = 5;
-    private int hp = 10;
+    private int maxHp = 5;
+    private int hp;
+    private GameManager mGameManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        hp = maxHp;
         mRigid = this.GetComponent<Rigidbody2D>(); 
         mAnimator = GetComponentInChildren<Animator>();
+        mGameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -52,6 +56,12 @@ public class BODController : MonoBehaviour
 
     }
 
+    public void SpawnPlayer()
+    {
+        gameObject.SetActive(true);
+        hp = maxHp;
+    }
+
     public void Damaged()
     {
         hp -= 1;
@@ -59,9 +69,11 @@ public class BODController : MonoBehaviour
         print("Attacked");
         if (hp <= 0)
         {
+            mGameManager.PlayerDead();
             this.gameObject.SetActive(false);
         }
     }
+
 
     private void OnDrawGizmos()
     {
