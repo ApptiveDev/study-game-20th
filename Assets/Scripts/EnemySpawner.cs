@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Enemy enemyScript;
+    public GameObject enemyPrefab;
+
     void Start()
     {
-        
+        enemyScript = GetComponent<Enemy>();
+        enemyPrefab = enemyScript.enemyObject;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        SpawnEnemy();
+    }
+
+    void SpawnEnemy()
+    {
+        float randomX = Random.Range(-16f, 16f);
+        float randomY = Random.Range(-8f, 8f);
+
+        GameObject enemy = Instantiate(enemyPrefab, new Vector3(randomX, randomY, 0f), Quaternion.identity);
     }
 }
