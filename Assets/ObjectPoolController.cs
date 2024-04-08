@@ -16,8 +16,6 @@ public class ObjectPoolController : MonoBehaviour
         }
     }
 
-    public 
-
     public void isDead(GameObject deadSlime)
     {
         SlimePool.Add(deadSlime);

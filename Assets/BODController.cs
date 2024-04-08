@@ -74,12 +74,13 @@ public class BODController : MonoBehaviour
         }
     }
 
-
+    /*
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawCube(new Vector3(this.mRigid.position.x +this.attackSensorPosX*transform.localScale.x*-1, this.mRigid.position.y + this.attackSensorPosY, 0), new Vector3(this.attackSensorHalfSizeX, this.attackSensorHalfSizeY, 1));
     }
+    */
 
     private float attackSensorPosX = 2.5f;
     private float attackSensorPosY = 0;
