@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
     private Enemy enemyScript;
     public GameObject enemyPrefab;
+    
 
     void Start()
     {
