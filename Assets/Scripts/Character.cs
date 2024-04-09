@@ -9,10 +9,18 @@ public class Character : MonoBehaviour
 
     Vector3 moveVector;
 
+    [SerializeField] float healthPoint = 100;
+
     // Update is called once per frame
     void Update()
     {
         MoveByAxes();
+    }
+
+    public void ExecuteOnDamaged()
+    {
+        healthPoint -= 20;
+        Debug.Log("¾Æ¾ß");
     }
 
     void MoveByRigidBody()
