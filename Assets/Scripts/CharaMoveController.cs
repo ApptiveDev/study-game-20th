@@ -2,25 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class CharaMoveController : MonoBehaviour
 {
-
     [SerializeField] float moveSpeed = 3f;
 
     Vector3 moveVector;
 
-    [SerializeField] float healthPoint = 100;
 
     // Update is called once per frame
     void Update()
     {
-        MoveByAxes();
-    }
-
-    public void ExecuteOnDamaged()
-    {
-        healthPoint -= 20;
-        Debug.Log("¾Æ¾ß");
+        MoveByTransform();
     }
 
     void MoveByRigidBody()
@@ -78,6 +70,6 @@ public class Character : MonoBehaviour
     {
         moveVector = Input.GetAxis("Horizontal") * transform.right;
         moveVector += Input.GetAxis("Vertical") * transform.up;
-        transform.position += moveVector.normalized * moveSpeed * Time.deltaTime;
+        transform.position += moveVector * moveSpeed * Time.deltaTime;
     }
 }
