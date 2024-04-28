@@ -10,26 +10,53 @@ public class EnemySpawner : MonoBehaviour
     float currTime = 0f; //시간 담당 변수
     void Start()
     {
-        
+        StartCoroutine(SpawnbyTime());
     }
 
     // Update is called once per frame
     void Update()
     {
-        currTime += Time.deltaTime; //시간 흐르게하기
-
-        if(currTime > 5f) //10초마다 생성
+        /*
+        if (currTime < 3f)
         {
-           float newX = Random.Range(-10f,10f), newY = Random.Range(-10f,10f);
-           //X, Y좌표 10 10안에서 랜덤 생성
-            
-           Vector3 spawnPosition = new Vector3(newX, newY, 0f); 
-           // 생성 위치 설정
-
-           Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-           //에너미 호출
-
+            currTime += Time.deltaTime; //시간 흐르게하기
+        }
+        
+        else
+        {
+           for (int i = 0; i < 2; i++)
+           {
+            SpawnOject();
+           }
            currTime = 0f; //시간 초기화
         }
+        */
+    }
+
+    IEnumerator SpawnbyTime()
+    {   
+        while(true)
+        {
+            yield return new WaitForSeconds(3f);
+            for (int i = 0; i < 2; i++)
+            {
+                SpawnOject();
+            }
+        }
+    }
+
+    void SpawnOject()
+    {
+        Instantiate(enemyPrefab, GetRndPos(), Quaternion.identity);
+        //에너미 호출
+    }
+    Vector3 GetRndPos()
+    {
+        float newX = Random.Range(-10f,10f), newY = Random.Range(-10f,10f);
+        //X, Y좌표 10 10안에서 랜덤 생성
+        //근데 왜 내 배경 스케일은 100 100인데 위치 범위는 다르지?
+        Vector3 spawnPosition = new Vector3(newX, newY, 0f); 
+        // 생성 위치 설정
+        return spawnPosition;
     }
 }

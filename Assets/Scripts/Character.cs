@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Android.Types;
 using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    [SerializeField] float moveSpeed = 3f;
+    Vector3 moveVector ;
+    public int Health = 100;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,29 +18,45 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float moveX = 0f;
-        float moveY = 0f;
+        MoveTransform() ;
+    }
+
+    void MoveTransform()
+    {
+        moveVector = Vector3.zero ;
 
         if (Input.GetKey(KeyCode.W))
         {
-            moveY += 1f;
+            moveVector += transform.up ;
         }
-
-        if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S))
         {
-            moveY -= 1f;
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            moveX -= 1f;
+            moveVector += -1 * transform.up ; //transform은 up right밖에 안되나?
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            moveX += 1f;
+            moveVector += transform.right ;   
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            moveVector += -1 * transform.right ;
         }
 
-        transform.Translate(new Vector3(moveX, moveY, 0f) * 0.1f);
+        transform.position += moveVector.normalized * moveSpeed * Time.deltaTime  ;
+        
+    }
+    
+    void OnTriggerEnter(Collider other) //충돌 처리/근데 콜리드가 뭐임? 이거 어따 넣어야됨? 여기에 빼놔도 되나?
+    {
+        if (other.CompareTag("Enemy")) //Comparetag도 뭔지 모름FindGameObjectWithTag쓰면 왜안됨?
+        {
+            TakeDamage(10);
+        }
+    }
+
+    void TakeDamage(int Damage) //피해처리
+    {
+        Health -= Damage;
     }
 }
