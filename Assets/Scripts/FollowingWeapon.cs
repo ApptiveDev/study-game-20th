@@ -79,8 +79,7 @@ public class FollowingWeapon : Weapon
 
         if (targetObject == null)
         {
-            print("isNull");
-            mGlopPoolController.isDead(gameObject);
+            targetObject = FindCloseEnemy();
         }
         else
         {

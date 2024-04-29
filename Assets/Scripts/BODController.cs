@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BODController : MonoBehaviour
 {
+    private CamaraController mCameraController;
     private Rigidbody2D mRigid;
     private Animator mAnimator;
     private float speed = 5;
@@ -25,6 +26,7 @@ public class BODController : MonoBehaviour
         mRigid = this.GetComponent<Rigidbody2D>(); 
         mAnimator = GetComponentInChildren<Animator>();
         mGameManager = GameManager.Instance;
+        mCameraController = mGameManager.getCamera().GetComponent<CamaraController>();
         hpBar = mGameManager.getPlayerHp();//GameObject.Find("Canvas").GetComponentInChildren<HpBar>();
         
     }
@@ -100,6 +102,7 @@ public class BODController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         hit.collider.GetComponent<SlimeController>().Damaged();
+        mCameraController.ShakeCamera();
     }
 
     private void Attack()
