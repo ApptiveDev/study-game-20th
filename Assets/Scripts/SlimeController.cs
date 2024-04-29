@@ -6,7 +6,7 @@ public class SlimeController : MonoBehaviour
 {
 
     private int hp = 1;
-    private ObjectPoolController mObjectPoolController;
+    private SlimePoolController mSlimePoolController;
     Transform playerTransform;
     private float speed = 1f;
 
@@ -18,7 +18,7 @@ public class SlimeController : MonoBehaviour
         if (hp <= 0)
         {
             this.gameObject.SetActive(false);
-            mObjectPoolController.isDead(this.gameObject);
+            mSlimePoolController.isDead(this.gameObject);
         }
     }
 
@@ -38,8 +38,8 @@ public class SlimeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mObjectPoolController = GameObject.Find("GameManager").GetComponent<ObjectPoolController>();
-        playerTransform = GameObject.Find("BOD").GetComponent<Transform>();
+        mSlimePoolController = GameManager.Instance.getGameManager().GetComponent<SlimePoolController>();//GameObject.Find("GameManager").GetComponent<SlimePoolController>();
+        playerTransform = GameManager.Instance.getPlayer().GetComponent<Transform>();//GameObject.Find("BOD").GetComponent<Transform>();
         mRigid = gameObject.GetComponent<Rigidbody2D>();
     }
 

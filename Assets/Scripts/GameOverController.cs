@@ -2,28 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameOverController: MonoBehaviour
 {
 
-    GameObject tmpGameOver;
-    GameObject player;
+    GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        tmpGameOver = GameObject.Find("GameOver");
-        tmpGameOver.SetActive(false);
-        player = GameObject.Find("BOD");
+        gameManager = GameManager.Instance;
+        gameObject.SetActive(false);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 
     public void PlayerDead()
     {
-        tmpGameOver.SetActive(true); 
+        gameObject.SetActive(true);
         Time.timeScale = 0.1f;
-        //StartCoroutine(GameOvered());
+        StartCoroutine(GameOvered());
     }
+
     IEnumerator GameOvered()
     {
+        yield return new WaitForSeconds(1.0f);
         while (true)
         {
             yield return new WaitForSeconds(0.01f);
@@ -32,9 +38,9 @@ public class GameManager : MonoBehaviour
                 break;
             }
         }
-        tmpGameOver.SetActive(false);
+        gameObject.SetActive(false);
         Time.timeScale = 1;
-        player.GetComponent<BODController>().SpawnPlayer();
-           
+        gameManager.getPlayer().GetComponent<BODController>().SpawnPlayer();
+
     }
 }
