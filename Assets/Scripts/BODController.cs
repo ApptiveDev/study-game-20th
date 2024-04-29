@@ -11,6 +11,12 @@ public class BODController : MonoBehaviour
     private int maxHp = 5;
     private int hp;
     private GameManager mGameManager;
+    private HpBar hpBar;
+
+    public int getHp()
+    {
+        return hp;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +24,9 @@ public class BODController : MonoBehaviour
         hp = maxHp;
         mRigid = this.GetComponent<Rigidbody2D>(); 
         mAnimator = GetComponentInChildren<Animator>();
-        mGameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        mGameManager = GameManager.getInstance();
+        hpBar = mGameManager.getPlayerHp();//GameObject.Find("Canvas").GetComponentInChildren<HpBar>();
+        
     }
 
     // Update is called once per frame
@@ -64,6 +72,7 @@ public class BODController : MonoBehaviour
 
     public void Damaged()
     {
+        hpBar.ChangeHpBar(hp);
         hp -= 1;
         mAnimator.SetTrigger("Hurt");
         print("Attacked");
