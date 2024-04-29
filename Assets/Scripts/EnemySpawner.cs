@@ -9,6 +9,24 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] GameObject enemyObject;
 
+    public List<Enemy> enemyList = new List<Enemy>();
+
+    public static EnemySpawner instance = null;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
     //몇초에 한번씩 랜덤한 위치에 스폰시키고 싶다
 
     private void Start()
@@ -42,15 +60,20 @@ public class EnemySpawner : MonoBehaviour
 
             for (int i = 0; i < spawnAmount; i++)
             {
-                SpawnObject();
+                enemyList.Add(SpawnEnemy());
             }
         }
     }
 
-    void SpawnObject()
+    public void RemoveEnemyOnList(Enemy enemy)
+    {
+        enemyList.Remove(enemy);
+    }
+
+    public Enemy SpawnEnemy()
     {
         //스폰
-        Instantiate(enemyObject, GetRndPos(), Quaternion.identity);
+        return Instantiate(enemyObject, GetRndPos(), Quaternion.identity).GetComponent<Enemy>();
     }
     
     Vector3 GetRndPos()

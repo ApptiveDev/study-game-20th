@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Character");
-        moveSpeed = Random.Range(1f,3f);
+        moveSpeed = Random.Range(0.5f,2f);
         character = player.GetComponent<Character>();
     }
 
@@ -23,6 +23,14 @@ public class Enemy : MonoBehaviour
     {
         moveVector = player.transform.position - transform.position;
         transform.position += moveVector.normalized * moveSpeed * Time.deltaTime;
+        GameObject.FindGameObjectsWithTag("Enemy");
+    }
+
+    public void OnDead()
+    {
+        EnemySpawner.instance.enemyList.Remove(this); // is this good?
+        //EnemySpawner.instance.RemoveEnemyOnList(this); // is this good?
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -32,4 +40,5 @@ public class Enemy : MonoBehaviour
             character.ExecuteOnDamaged();
         }
     }
+
 }
