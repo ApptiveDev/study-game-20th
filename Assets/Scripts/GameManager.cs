@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     GameObject player;
     List<GameObject> enemyList = new List<GameObject>();
     GameObject mGameManager;
-
+    GameObject camera;
 
     public void addEnemy(GameObject enemy)
     {
@@ -53,6 +53,11 @@ public class GameManager : MonoBehaviour
         return playerHp;
     }
 
+    public GameObject getCamera()
+    {
+        return camera;
+    }
+
     public GameObject getTmpGameOver()
     {
         return tmpGameOver;
@@ -61,6 +66,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        camera = GameObject.Find("Main Camera");
         instance = gameObject.GetComponent<GameManager>();
         mGameManager = GameObject.Find("GameManagement");
         playerHp = GameObject.Find("PlayerHp").GetComponent<HpBar>();
