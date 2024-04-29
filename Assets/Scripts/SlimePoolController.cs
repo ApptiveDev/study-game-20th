@@ -18,7 +18,7 @@ public class SlimePoolController : ObjectPoolController
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameManager.getInstance();
+        gameManager = GameManager.Instance;
         for (int i = 0; i < 10; i++)
         {
             GameObject temp = Instantiate(slime, new Vector3(0, 0, 0), Quaternion.identity);

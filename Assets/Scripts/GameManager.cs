@@ -6,25 +6,27 @@ public class GameManager : MonoBehaviour
 {
 
     private static GameManager instance;
-    private GameManager() { }
+    //private GameManager() { }
 
-
-    public static GameManager getInstance()
+    public static GameManager Instance
     {
-        if (instance == null)
+        get
         {
-            instance = new GameManager();
+
+            //if (instance == null)
+            //{
+                //print("Create instance of GameManager");
+                //instance = new GameManager();
+            //}
+            return instance ;
         }
-        return instance;
     }
     HpBar playerHp;
     GameObject tmpGameOver;
     GameObject player;
     List<GameObject> enemyList = new List<GameObject>();
-    public GameObject getPlayer()
-    {
-        return player;
-    }
+    GameObject mGameManager;
+
 
     public void addEnemy(GameObject enemy)
     {
@@ -36,39 +38,39 @@ public class GameManager : MonoBehaviour
         return enemyList;
     }
 
+    public GameObject getGameManager()
+    {
+        return mGameManager;
+    }
+
+    public GameObject getPlayer()
+    {
+        return player;
+    }
+
     public HpBar getPlayerHp()
     {
         return playerHp;
     }
 
+    public GameObject getTmpGameOver()
+    {
+        return tmpGameOver;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        instance = gameObject.GetComponent<GameManager>();
+        mGameManager = GameObject.Find("GameManagement");
         playerHp = GameObject.Find("PlayerHp").GetComponent<HpBar>();
         tmpGameOver = GameObject.Find("GameOver");
-        tmpGameOver.SetActive(false);
         player = GameObject.Find("BOD");
     }
+    private void Update()
+    {
+        print("tlqkf GameManager running");
+    }
 
-    public void PlayerDead()
-    {
-        tmpGameOver.SetActive(true); 
-        Time.timeScale = 0.1f;
-        //StartCoroutine(GameOvered());
-    }
-    IEnumerator GameOvered()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(0.01f);
-            if (Input.anyKey)
-            {
-                break;
-            }
-        }
-        tmpGameOver.SetActive(false);
-        Time.timeScale = 1;
-        player.GetComponent<BODController>().SpawnPlayer();
-           
-    }
+
 }

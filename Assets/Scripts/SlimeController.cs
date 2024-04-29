@@ -38,8 +38,8 @@ public class SlimeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mSlimePoolController = GameManager.getInstance().gameObject.GetComponent<SlimePoolController>();//GameObject.Find("GameManager").GetComponent<SlimePoolController>();
-        playerTransform = GameManager.getInstance().getPlayer().GetComponent<Transform>();//GameObject.Find("BOD").GetComponent<Transform>();
+        mSlimePoolController = GameManager.Instance.getGameManager().GetComponent<SlimePoolController>();//GameObject.Find("GameManager").GetComponent<SlimePoolController>();
+        playerTransform = GameManager.Instance.getPlayer().GetComponent<Transform>();//GameObject.Find("BOD").GetComponent<Transform>();
         mRigid = gameObject.GetComponent<Rigidbody2D>();
     }
 

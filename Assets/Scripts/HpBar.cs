@@ -23,7 +23,7 @@ public class HpBar : MonoBehaviour
     void Start()
     {
         slider = gameObject.GetComponent<Slider>();
-        player = GameManager.getInstance().getPlayer().GetComponent<BODController>();
+        player = GameManager.Instance.getPlayer().GetComponent<BODController>();
     }
 
     // Update is called once per frame

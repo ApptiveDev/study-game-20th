@@ -44,7 +44,7 @@ public class FollowingWeapon : Weapon
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameManager.getInstance();
+        gameManager = GameManager.Instance;
         mGlopPoolController = gameManager.getPlayer().GetComponent<GlopPoolController>();
         playerTransform = gameObject.GetComponent<Transform>();
         targetObject = FindCloseEnemy();
@@ -72,17 +72,21 @@ public class FollowingWeapon : Weapon
         {
            
             mGlopPoolController.isDead(gameObject);
+            numAttack = 0;
             gameObject.SetActive(false);
+            
         }
 
-        if (targetObject == null | !targetObject.active)
+        if (targetObject == null)
         {
-            targetObject = FindCloseEnemy();
-            if (targetObject == null)
-            {
-                print("isNull");
-                mGlopPoolController.isDead(gameObject);
-
+            print("isNull");
+            mGlopPoolController.isDead(gameObject);
+        }
+        else
+        {
+            if (!targetObject.active)// 원래 if (A | B) 에서 A가 false면 B는 검사 안 하고 하는 거 아닌가
+            { 
+                targetObject = FindCloseEnemy();
             }
         }
 

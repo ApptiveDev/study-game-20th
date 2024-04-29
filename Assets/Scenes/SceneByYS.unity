@@ -360,8 +360,9 @@ GameObject:
   m_Component:
   - component: {fileID: 335759925}
   - component: {fileID: 335759928}
+  - component: {fileID: 335759929}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: GameManagement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -395,6 +396,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slime: {fileID: 6078189702908172657, guid: c864aca5f53af48a39cb8b29418c94f6, type: 3}
+--- !u!114 &335759929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335759924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3abd7a143155f441b8a5f2f1d26a58c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &646224709
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,6 +626,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1858546921}
   - component: {fileID: 1858546923}
+  - component: {fileID: 1858546924}
   - component: {fileID: 1858546922}
   m_Layer: 5
   m_Name: GameOver
@@ -737,6 +751,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1858546920}
   m_CullTransparentMesh: 1
+--- !u!114 &1858546924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858546920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17296785ac5b444359d9e08bd430cd96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1879233814
 GameObject:
   m_ObjectHideFlags: 0

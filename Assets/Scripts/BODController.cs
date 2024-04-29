@@ -24,7 +24,7 @@ public class BODController : MonoBehaviour
         hp = maxHp;
         mRigid = this.GetComponent<Rigidbody2D>(); 
         mAnimator = GetComponentInChildren<Animator>();
-        mGameManager = GameManager.getInstance();
+        mGameManager = GameManager.Instance;
         hpBar = mGameManager.getPlayerHp();//GameObject.Find("Canvas").GetComponentInChildren<HpBar>();
         
     }
@@ -78,7 +78,7 @@ public class BODController : MonoBehaviour
         print("Attacked");
         if (hp <= 0)
         {
-            mGameManager.PlayerDead();
+            mGameManager.getTmpGameOver().GetComponent<GameOverController>().PlayerDead();
             this.gameObject.SetActive(false);
         }
     }
