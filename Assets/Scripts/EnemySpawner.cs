@@ -9,29 +9,15 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] GameObject enemyObject;
 
+    public List<Enemy> enemyList;
+
+    GameObject spawnedEnemyObj;
+    Enemy spawnedEnemy;
     //몇초에 한번씩 랜덤한 위치에 스폰시키고 싶다
 
     private void Start()
     {
         StartCoroutine(SpawnbyTime());
-    }
-
-
-    float currentDelay = 0f;
-    void Update()
-    {
-        //if (currentDelay < spawnDelay)
-        //{
-        //    currentDelay += Time.deltaTime;
-        //}
-        //else
-        //{
-        //    for(int i = 0; i < spawnAmount; i++)
-        //    {
-        //        currentDelay = 0f;
-        //        SpawnObject();
-        //    }
-        //}
     }
 
     IEnumerator SpawnbyTime() // 코루틴
@@ -42,15 +28,18 @@ public class EnemySpawner : MonoBehaviour
 
             for (int i = 0; i < spawnAmount; i++)
             {
-                SpawnObject();
+                spawnedEnemyObj = SpawnObject();
+                spawnedEnemy = spawnedEnemyObj.GetComponent<Enemy>();
+                enemyList.Add(spawnedEnemy);
+                spawnedEnemy.ExecuteOnInit(this);
             }
         }
     }
 
-    void SpawnObject()
+    GameObject SpawnObject()
     {
         //스폰
-        Instantiate(enemyObject, GetRndPos(), Quaternion.identity);
+        return Instantiate(enemyObject, GetRndPos(), Quaternion.identity);
     }
     
     Vector3 GetRndPos()
