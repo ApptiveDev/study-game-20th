@@ -9,7 +9,14 @@ public class Character : MonoBehaviour
 
     Vector3 moveVector;
 
-    [SerializeField] float healthPoint = 100;
+    float healthPoint;
+    [SerializeField] float healthPointMax = 100;
+    [SerializeField] HPIndicator indicator;
+
+    private void Start()
+    {
+        SetHealthPoint(healthPointMax);
+    }
 
     // Update is called once per frame
     void Update()
@@ -17,9 +24,15 @@ public class Character : MonoBehaviour
         MoveByAxes();
     }
 
-    public void ExecuteOnDamaged()
+    public void SetHealthPoint(float health)
     {
-        healthPoint -= 20;
+        healthPoint = health;
+        indicator.SetIndicator(healthPoint/healthPointMax);
+    }
+
+    public void ExecuteOnDamaged(float damage)
+    {
+        SetHealthPoint(healthPoint - damage);
         Debug.Log("¾Æ¾ß");
     }
 
