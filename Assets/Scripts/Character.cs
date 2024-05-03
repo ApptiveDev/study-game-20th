@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : MonoBehaviour
+
+
+
 {    void Update()
     {
         // Vector3 clampedPosition = transform.position;
@@ -10,21 +13,25 @@ public class Character : MonoBehaviour
         // clampedPosition.y = Mathf.Clamp(clampedPosition.y, -9.6f, 5.25f);
         // transform.position = clampedPosition;
 
+        Vector2 vec = new Vector2(0f,0f);
+
         if (Input.GetKey (KeyCode.LeftArrow)) {
-            this.transform.Translate (-0.1f,0f,0f);
+            vec.x = -1f;
         }
 
         if (Input.GetKey (KeyCode.RightArrow)) {
-            this.transform.Translate (0.1f,0f,0f);
+            vec.x = 1f;
         }
 
         if (Input.GetKey (KeyCode.UpArrow)) {
-            this.transform.Translate (0f,0.1f,0f);
+            vec.y = 1f;
         }
 
         if (Input.GetKey (KeyCode.DownArrow)) {
-            this.transform.Translate (0f,-0.1f,0f);
+            vec.y = -1f;
         }
+
+        transform.Translate(vec.normalized * Time.deltaTime * 8f);
 
         if (transform.position.x < -16) {
             transform.position = new Vector3(-16,transform.position.y,0);

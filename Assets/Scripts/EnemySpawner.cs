@@ -6,17 +6,17 @@ public class EnemySpawner : MonoBehaviour
 {
     private Enemy enemyScript;
     public GameObject enemyPrefab;
+    float CurrentTime;
     
-
-    void Start()
-    {
-        enemyScript = GetComponent<Enemy>();
-        enemyPrefab = enemyScript.enemyObject;
-    }
 
     void Update()
     {
-        SpawnEnemy();
+        CurrentTime += Time.deltaTime;
+
+        if (CurrentTime > 1.5f) {
+            SpawnEnemy();
+            CurrentTime = 0;
+        }
     }
 
     void SpawnEnemy()
