@@ -10,18 +10,20 @@ public class Character : MonoBehaviour
 
     void Update()
     {
-        Move();   
+        MoveAndflip();   
     }
 
-    void Move() 
+    void MoveAndflip() 
     {
         Vector2 vec = new Vector2(0f,0f);
 
         if (Input.GetKey (KeyCode.LeftArrow)) {
+            transform.localScale = new Vector3(3.3849f,3.3849f,3.3849f);
             vec.x = -1f;
         }
 
         if (Input.GetKey (KeyCode.RightArrow)) {
+            transform.localScale = new Vector3(-3.3849f,3.3849f,3.3849f);
             vec.x = 1f;
         }
 
