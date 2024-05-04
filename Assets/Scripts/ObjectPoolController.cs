@@ -6,17 +6,33 @@ using static System.Net.WebRequestMethods;
 public class ObjectPoolController : MonoBehaviour
 {
 
+    protected List<GameObject> ObjectPool = new List<GameObject>();
 
-    protected void RandomSpawnObject(List<GameObject> pool)
+    protected void AddToPool(GameObject Object)
     {
-        if (pool.Count > 0)
+        ObjectPool.Add(Object);
+    }
+
+    protected void MakeObjects(GameObject ObjectPrefab, int num)
+    {
+        for (int i = 0; i < num; i++)
         {
-            print("RandomSpawned");
+            GameObject temp = Instantiate(ObjectPrefab, new Vector3(10, 10, 0), Quaternion.identity);
+            ObjectPool.Add(temp);
+            ObjectPool[i].SetActive(false);
+        }
+    }
+
+
+    protected void RandomSpawnObject()
+    {
+        if (ObjectPool.Count > 0)
+        {
             float y = Random.RandomRange(-5, 5);
             float x = Random.RandomRange(-7, 7);
-            GameObject bady = pool[0];
+            GameObject bady = ObjectPool[0];
             bady.SetActive(true);
-            pool.RemoveAt(0);
+            ObjectPool.RemoveAt(0);
             
             bady.GetComponent<Transform>().position = new Vector3(x, y, 0);
 
@@ -26,25 +42,19 @@ public class ObjectPoolController : MonoBehaviour
         }
     }
 
-    protected void SpawnObject(Vector3 position, List<GameObject> pool)
+    protected void SpawnObject(Vector3 position)
     {
-        if (pool.Count > 0)
+        if (ObjectPool.Count > 0)
         {
-            print("Spawned");
-            GameObject bady = pool[0];
-            if (bady == null)
-            {
-                print("qudtlsrkxdms roRldi dho dlrp sjfdlsi tlqkf wlsWk whwrkxsp");
-            }
+            GameObject bady = ObjectPool[0];
             bady.SetActive(true);
-            pool.RemoveAt(0);
+            ObjectPool.RemoveAt(0);
 
             bady.GetComponent<Transform>().position = new Vector3(position.x, position.y, 0);
 
         }
         else
         {
-            print("fuck");
             return;
         }
     }

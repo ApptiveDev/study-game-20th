@@ -5,13 +5,23 @@ using UnityEngine;
 public class GlopPoolController : ObjectPoolController
 {
 
-    public GameObject Glop;
-    List<GameObject> GlopPool = new List<GameObject>();
+    [SerializeField] GameObject Glop;
     Transform playerTransform;
+    int shotGlopTime = 4;
+
+    public int getShotGlopTime()
+    {
+        return shotGlopTime;
+    }
+
+    public void setShotGlopTime(int time)
+    {
+        shotGlopTime = time;
+    }
 
     public void isDead(GameObject deadGlop)
     {
-        GlopPool.Add(deadGlop);
+        AddToPool(deadGlop);
     }
 
 
@@ -20,22 +30,16 @@ public class GlopPoolController : ObjectPoolController
     void Start()
     {
         playerTransform = gameObject.GetComponent<Transform>();
-        for (int i = 0; i < 10; i++)
-        {
-            GameObject temp = Instantiate(Glop, new Vector3(10, 10, 0), Quaternion.identity);
-            GlopPool.Add(temp);
-            GlopPool[i].SetActive(false);
-        }
+        MakeObjects(Glop, 10);
         StartCoroutine(SpawnObject());
     }
 
     IEnumerator SpawnObject()
     {
         while (true)
-        {
-            print("fuck that");
-            yield return new WaitForSeconds(1);
-            SpawnObject(playerTransform.position, GlopPool);
+        { 
+            yield return new WaitForSeconds(shotGlopTime);
+            SpawnObject(playerTransform.position);
         }
     }
 }
