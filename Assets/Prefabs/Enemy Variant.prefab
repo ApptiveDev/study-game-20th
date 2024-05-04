@@ -56,7 +56,8 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4361050924130691960, guid: 2c996689fad470947b4ca0eab69469cd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -149,4 +150,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548cd9629c008477c86cbb3ad8037593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mObjectPoolController: {fileID: 0}
+  ExpJam: {fileID: 1254968996013539635, guid: 63445aaf55ac74399b90d6a2dc631fe0, type: 3}

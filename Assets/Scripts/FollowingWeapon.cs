@@ -31,12 +31,10 @@ public class FollowingWeapon : Weapon
 
         if (MostCloseIndex != -1)
         {
-            print("is not null");
             return enemyList[MostCloseIndex];
         }
         else
         {
-            print("tlqkftlqkftlqkf");
             return null;
         }
     }
@@ -58,7 +56,6 @@ public class FollowingWeapon : Weapon
 
     private void Move()
     {
-        //print("tlqkf");
         float deltaX = targetObject.transform.position.x - transform.position.x;
         float deltaY = targetObject.transform.position.y - transform.position.y;
         float a = Mathf.Sqrt(Mathf.Pow(deltaX, 2) + Mathf.Pow(deltaY, 2));
@@ -87,9 +84,10 @@ public class FollowingWeapon : Weapon
             { 
                 targetObject = FindCloseEnemy();
             }
+            else
+            {
+                Move();
+            }
         }
-
-        Move();
-
     }
 }

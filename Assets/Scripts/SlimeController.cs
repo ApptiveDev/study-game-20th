@@ -9,30 +9,27 @@ public class SlimeController : MonoBehaviour
     private SlimePoolController mSlimePoolController;
     Transform playerTransform;
     private float speed = 1f;
-
+    private ExpJamPoolController mExpJamPoolController;
     Rigidbody2D mRigid;
 
-    public void Damaged()
+    public void Damaged(int damage = 1)
     {
-        hp -= 1;
+        hp -= damage;
         if (hp <= 0)
         {
             this.gameObject.SetActive(false);
             mSlimePoolController.isDead(this.gameObject);
+            mExpJamPoolController.DropExpJam(transform.position);   
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("Attack");
         if (collision.tag == "Player")
         {
             collision.GetComponent<BODController>().Damaged();
         }
     }
-
- 
-
     
 
     // Start is called before the first frame update
@@ -41,6 +38,7 @@ public class SlimeController : MonoBehaviour
         mSlimePoolController = GameManager.Instance.getGameManager().GetComponent<SlimePoolController>();//GameObject.Find("GameManager").GetComponent<SlimePoolController>();
         playerTransform = GameManager.Instance.getPlayer().GetComponent<Transform>();//GameObject.Find("BOD").GetComponent<Transform>();
         mRigid = gameObject.GetComponent<Rigidbody2D>();
+        mExpJamPoolController = GameManager.Instance.getExpJamPoolController();
     }
 
     private void Move()

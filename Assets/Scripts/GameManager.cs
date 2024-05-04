@@ -21,12 +21,16 @@ public class GameManager : MonoBehaviour
             return instance ;
         }
     }
+    WeaponManager weaponManager;
     HpBar playerHp;
+    ExpBar playerExp;
     GameObject tmpGameOver;
     GameObject player;
     List<GameObject> enemyList = new List<GameObject>();
     GameObject mGameManager;
     GameObject camera;
+    ExpJamPoolController mExpJamPoolController;
+
 
     public void addEnemy(GameObject enemy)
     {
@@ -63,20 +67,39 @@ public class GameManager : MonoBehaviour
         return tmpGameOver;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public ExpBar getExpBar()
     {
+        return playerExp;
+    }
+
+    public ExpJamPoolController getExpJamPoolController()
+    {
+        return mExpJamPoolController;
+    }
+
+    public WeaponManager getWeaponManager()
+    {
+        return weaponManager;
+    }
+
+    private void Awake()
+    {
+        instance = this;
+        weaponManager = GameObject.Find("WeaponSelect").GetComponent<WeaponManager>();
         camera = GameObject.Find("Main Camera");
-        instance = gameObject.GetComponent<GameManager>();
         mGameManager = GameObject.Find("GameManagement");
         playerHp = GameObject.Find("PlayerHp").GetComponent<HpBar>();
         tmpGameOver = GameObject.Find("GameOver");
         player = GameObject.Find("BOD");
-    }
-    private void Update()
-    {
-        print("tlqkf GameManager running");
+        playerExp = GameObject.Find("PlayerExp").GetComponent<ExpBar>();
+        mExpJamPoolController = mGameManager.GetComponent<ExpJamPoolController>();
     }
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+
+    }
 
 }

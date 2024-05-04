@@ -15,7 +15,6 @@ public class Weapon : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("Weapon Attack");
         if (collision.tag == "Enemy")
         {
             numAttack += 1;

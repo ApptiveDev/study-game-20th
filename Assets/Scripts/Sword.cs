@@ -9,6 +9,11 @@ public class Sword : Weapon
     float angle = 0;
     float distance = 3;
 
+    public void setAngle(float angle)
+    {
+        this.angle = angle;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +29,5 @@ public class Sword : Weapon
         angle += 3 * Time.deltaTime;
 
         mTransform.RotateAround(new Vector3(0, 0, 1), 10* Time.deltaTime);
-
     }
 }

@@ -13,10 +13,21 @@ public class BODController : MonoBehaviour
     private int hp;
     private GameManager mGameManager;
     private HpBar hpBar;
+    int damage = 1;
 
     public int getHp()
     {
         return hp;
+    }
+
+    public int getDamage()
+    {
+        return damage;
+    }
+
+    public void setDamage(int damage)
+    {
+        this.damage = damage;
     }
 
     // Start is called before the first frame update
@@ -26,7 +37,7 @@ public class BODController : MonoBehaviour
         mRigid = this.GetComponent<Rigidbody2D>(); 
         mAnimator = GetComponentInChildren<Animator>();
         mGameManager = GameManager.Instance;
-        mCameraController = mGameManager.getCamera().GetComponent<CamaraController>();
+        //mCameraController = mGameManager.getCamera().GetComponent<CamaraController>();
         hpBar = mGameManager.getPlayerHp();//GameObject.Find("Canvas").GetComponentInChildren<HpBar>();
         
     }
@@ -77,7 +88,6 @@ public class BODController : MonoBehaviour
         hpBar.ChangeHpBar(hp);
         hp -= 1;
         mAnimator.SetTrigger("Hurt");
-        print("Attacked");
         if (hp <= 0)
         {
             mGameManager.getTmpGameOver().GetComponent<GameOverController>().PlayerDead();
@@ -101,8 +111,8 @@ public class BODController : MonoBehaviour
     IEnumerator Attacking(RaycastHit2D hit)
     {
         yield return new WaitForSeconds(0.5f);
-        hit.collider.GetComponent<SlimeController>().Damaged();
-        mCameraController.ShakeCamera();
+        hit.collider.GetComponent<SlimeController>().Damaged(damage);
+        //mCameraController.ShakeCamera();
     }
 
     private void Attack()

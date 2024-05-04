@@ -5,13 +5,21 @@ using UnityEngine;
 public class SlimePoolController : ObjectPoolController
 {
 
-    public GameObject slime;
-    List<GameObject> SlimePool = new List<GameObject>();
+    [SerializeField] GameObject slime;
     GameManager gameManager;
+
 
     public void isDead(GameObject deadSlime)
     {
-        SlimePool.Add(deadSlime);
+        AddToPool(deadSlime);
+    }
+
+    private void AddtoEnemyList()
+    {
+        for (int i =0; i < ObjectPool.Count; i++)
+        {
+            gameManager.addEnemy(ObjectPool[i]);
+        }
     }
 
 
@@ -19,13 +27,8 @@ public class SlimePoolController : ObjectPoolController
     void Start()
     {
         gameManager = GameManager.Instance;
-        for (int i = 0; i < 10; i++)
-        {
-            GameObject temp = Instantiate(slime, new Vector3(0, 0, 0), Quaternion.identity);
-            SlimePool.Add(temp);
-            gameManager.addEnemy(temp);
-            SlimePool[i].SetActive(false);
-        }
+        MakeObjects(slime, 10);
+        AddtoEnemyList();
         StartCoroutine(SpawnObject());
     }
 
@@ -34,7 +37,7 @@ public class SlimePoolController : ObjectPoolController
         while (true)
         {
             yield return new WaitForSeconds(1);
-            RandomSpawnObject(SlimePool);
+            RandomSpawnObject();
         }
     }
 
