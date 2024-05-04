@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class Character : MonoBehaviour
 {    
-    private float healthPoint = 10f;
+    private float CharacterHealthPoint = 10f;
 
     void Update()
     {
@@ -58,14 +58,14 @@ public class Character : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            healthPoint--;
-            checkCharaterDead();
+            CharacterHealthPoint--;
+            CharaterDead();
         }
     }
 
-    private void checkCharaterDead()
+    private void CharaterDead()
     {
-        if (healthPoint < 1)
+        if (CharacterHealthPoint < 1)
             {
             gameObject.SetActive(false);
             Time.timeScale = 0f;

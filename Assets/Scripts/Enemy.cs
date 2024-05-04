@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 {
     private Transform player;
     float flag = 0;
+    private float EnemyHealthPoint = 1f;
     
     void Update() 
     {
@@ -30,5 +31,22 @@ public class Enemy : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, player.position, 1.5f * Time.deltaTime);
             }
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Weapon")
+        {
+            EnemyHealthPoint--;
+            if (EnemyHealthPoint < 1) 
+            {
+                EnemyDead();
+            }
+        }
+    }
+
+    private void EnemyDead()
+    {
+        Destroy(gameObject);
     }
 }
