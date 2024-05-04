@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Character : MonoBehaviour
+{    
+    private float healthPoint = 10f;
 
-
-
-{    void Update()
+    void Update()
     {
-        // Vector3 clampedPosition = transform.position;
-        // clampedPosition.x = Mathf.Clamp(clampedPosition.x, -16f, 16f);
-        // clampedPosition.y = Mathf.Clamp(clampedPosition.y, -9.6f, 5.25f);
-        // transform.position = clampedPosition;
+        Move();   
+    }
 
+    void Move() 
+    {
         Vector2 vec = new Vector2(0f,0f);
 
         if (Input.GetKey (KeyCode.LeftArrow)) {
@@ -48,5 +50,23 @@ public class Character : MonoBehaviour
         if (transform.position.y > 5.25f) {
             transform.position = new Vector3(transform.position.x,5.25f,0);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Enemy")
+        {
+            healthPoint--;
+            checkCharaterDead();
+        }
+    }
+
+    private void checkCharaterDead()
+    {
+        if (healthPoint < 1)
+            {
+            gameObject.SetActive(false);
+            Time.timeScale = 0f;
+            }
     }
 }
