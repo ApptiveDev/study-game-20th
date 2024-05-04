@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    private Enemy enemyScript;
     public GameObject enemyPrefab;
     float CurrentTime;
     
