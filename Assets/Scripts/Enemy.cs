@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     private Transform player;
     float flag = 0;
     private float EnemyHealthPoint = 1f;
-    //public GameObject ExpCoin;
+    public GameObject ExpCoin;
     
     void Update() 
     {
@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
             EnemyHealthPoint--;
             if (EnemyHealthPoint < 1) 
             {
-                //LeaveExp();
+                LeaveExp();
                 EnemyDead();
             }
         }
@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // private void LeaveExp() {
-    //     Instantiate(ExpCoin,transform.position, Quaternion.identity);
-    // }
+    private void LeaveExp() {
+        Instantiate(ExpCoin,transform.position, Quaternion.identity);
+    }
 }

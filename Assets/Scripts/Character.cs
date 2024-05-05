@@ -7,7 +7,8 @@ using UnityEngine.UIElements;
 public class Character : MonoBehaviour
 {    
     private float CharacterHealthPoint = 10f;
-
+    public static int Exp = 0;
+    public static int Level = 0;
     void Update()
     {
         MoveAndflip();   
