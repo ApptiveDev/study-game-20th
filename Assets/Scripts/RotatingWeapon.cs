@@ -21,7 +21,7 @@ public class RotatingWeapon : MonoBehaviour
                 var x = circleR * Mathf.Sin(rad);
                 var y = circleR * Mathf.Cos(rad);
                 transform.position = player.transform.position + new Vector3(-x * circleR, y * circleR);
-                transform.rotation = Quaternion.Euler(0, 0, deg * -1); //가운데를 바라보게 각도 조절
+                transform.rotation = Quaternion.Euler(0, 0, deg); //가운데를 바라보게 각도 조절
             } 
             else
             {
