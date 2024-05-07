@@ -655,7 +655,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 4
+  m_MaxValue: 10
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -1414,6 +1414,9 @@ MonoBehaviour:
   Button1: {fileID: 50979648}
   Button2: {fileID: 301312175}
   Button3: {fileID: 1417979593}
+  swordSprite: {fileID: 21300000, guid: ee6d13c026fcc47ae8b63179bf62df20, type: 3}
+  glopSprite: {fileID: 21300000, guid: 6eff859e0f5ba4ad0957595b040df7d2, type: 3}
+  playerSprite: {fileID: 4072241969498346569, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
 --- !u!222 &1774899789
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -25,7 +25,7 @@ public class ExpBar : MonoBehaviour
     void LevelUp()
     {
         print("Level Up");
-        weaponManager.WeaponSelect();
+        weaponManager.ShowWeaponSelectPage();
     }
 
     // Start is called before the first frame update
