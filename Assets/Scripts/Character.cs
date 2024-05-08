@@ -1,9 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Android.Types;
 using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    [SerializeField] float moveSpeed = 3f;
+    Vector3 moveVector ;
+    public int Health = 100;
+    public static int Exp = 0;
+    public static int MaxExp = Level * 5;
+    public static int Level = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,29 +21,70 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float moveX = 0f;
-        float moveY = 0f;
+        MoveTransform() ;
+        if (Health < 1)
+        {
+            CharaterDead();
+        }
+    }
+
+    void MoveTransform()
+    {
+        moveVector = Vector3.zero ;
 
         if (Input.GetKey(KeyCode.W))
         {
-            moveY += 1f;
+            moveVector += transform.up ;
         }
-
-        if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S))
         {
-            moveY -= 1f;
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            moveX -= 1f;
+            moveVector += -1 * transform.up ;
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            moveX += 1f;
+            moveVector += transform.right ;   
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            moveVector += -1 * transform.right ;
         }
 
-        transform.Translate(new Vector3(moveX, moveY, 0f) * 0.1f);
+        transform.position += moveVector.normalized * moveSpeed * Time.deltaTime  ;
+        
     }
+    
+    void OnTriggerEnter2D(Collider2D other) 
+    {
+        if (other.CompareTag("Enemy")) 
+        {
+                StartCoroutine(TakeDamage());
+        }
+    }
+
+    IEnumerator TakeDamage()
+    {
+        while (true)
+        {
+            Health -= 10;
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            StopAllCoroutines();
+        }
+    }
+
+    void CharaterDead()
+    {
+            gameObject.SetActive(false);
+            Time.timeScale = 0f;
+    }
+
 }
+
+    

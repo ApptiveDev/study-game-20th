@@ -2,17 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : PoolAble
 {
-    // Start is called before the first frame update
+    GameObject player;
+    GameObject ExpObject;
+    float moveSpeed = 2f;
+    Vector3 moveVector;
+
     void Start()
     {
         
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        
+        EnemyMove();
+    }
+
+    void EnemyMove()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        moveVector = player.transform.position - transform.position;
+        transform.position += moveVector.normalized * moveSpeed * Time.deltaTime;
+    }
+
+    void OnTriggerEnter2D(Collider2D other) 
+    {
+        if (other.CompareTag("Weapon")) 
+        {
+                EnemyDead() ;
+                LeaveExp() ;
+        }
+    }
+
+    void EnemyDead()
+    {
+        ReleaseObject();
+    }
+
+    void LeaveExp() 
+    {
+        Instantiate(ExpObject,transform.position, Quaternion.identity);
     }
 }
