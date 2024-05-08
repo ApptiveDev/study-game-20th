@@ -1,24 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class ClickImage : MonoBehaviour
+public class ClickImage : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField]
-    private Image Image1;
-    private Image Image2;
-    private Image Image3;
-    
-    // Start is called before the first frame update
-    void Start()
+    public void OnPointerClick(PointerEventData eventData)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            Debug.Log("You Cliked Image1");
+            Character.Level++;
+            FindObjectOfType<WeaponSpawner>().SpawnWeapon();
+            transform.position = new Vector3(222,-661,0);
+            Time.timeScale = 1f;
+        }
     }
 }

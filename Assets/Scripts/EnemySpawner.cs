@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
     {
         CurrentTime += Time.deltaTime;
 
-        if (CurrentTime > 1.5f) {
+        if (CurrentTime > 0.5f) {
             SpawnEnemy();
             CurrentTime = 0;
         }

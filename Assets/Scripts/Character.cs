@@ -17,6 +17,7 @@ public class Character : MonoBehaviour
     private GameObject heart;
     [SerializeField]
     private GameObject expCoin;
+    private float expPercent;
     
 
     void Start() {
@@ -37,21 +38,21 @@ public class Character : MonoBehaviour
     {
         Vector2 vec = new Vector2(0f,0f);
 
-        if (Input.GetKey (KeyCode.LeftArrow)) {
+        if (Input.GetKey (KeyCode.A)) {
             transform.localScale = new Vector3(3.3849f,3.3849f,3.3849f);
             vec.x = -1f;
         }
 
-        if (Input.GetKey (KeyCode.RightArrow)) {
+        if (Input.GetKey (KeyCode.D)) {
             transform.localScale = new Vector3(-3.3849f,3.3849f,3.3849f);
             vec.x = 1f;
         }
 
-        if (Input.GetKey (KeyCode.UpArrow)) {
+        if (Input.GetKey (KeyCode.W)) {
             vec.y = 1f;
         }
 
-        if (Input.GetKey (KeyCode.DownArrow)) {
+        if (Input.GetKey (KeyCode.S)) {
             vec.y = -1f;
         }
 
@@ -77,17 +78,17 @@ public class Character : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Enemy")
-        {
+        {   
             CharacterHealthPoint--;
             CharaterDead();
         }
     }
 
     public void LevelUp() {
-        if (Exp == (Level+1) * 5 && Level < 5)
+        if ((Exp == (Level+1) * 5) & (Level < 4))
         {
-            Level++;
-            FindObjectOfType<WeaponSpawner>().SpawnWeapon();
+            Time.timeScale = 0.03f;
+            GameObject.FindGameObjectWithTag("Image1").transform.position = new Vector3(960,540,0);
             Exp = 0;
         }
     }
@@ -108,7 +109,14 @@ public class Character : MonoBehaviour
     }
 
     private void ExpBar() {
-        float expPercent = (float)Exp / (float)((Level+1)*5);
+        if (Level >= 4)
+        {
+            expPercent = 1;
+        }
+        else
+        {
+            expPercent = (float)Exp / (float)((Level+1)*5);
+        }
         expBarImage.fillAmount = expPercent;
     }
 }
