@@ -6,9 +6,7 @@ public class EnemySpawner : PoolAble
 {
     public string enemyObjectName;
     private ObjectPoolManager poolManager;
-
     // Start is called before the first frame update
-    float currTime = 0f; //시간 담당 변수
     void Start()
     {
         poolManager = ObjectPoolManager.instance;  // 오브젝트풀매니저 가져오기
@@ -41,6 +39,5 @@ public class EnemySpawner : PoolAble
 
             // 적 캐릭터 활성화
             enemy.SetActive(true);
-        }
     }
 }
