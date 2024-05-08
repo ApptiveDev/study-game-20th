@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4597887491677052981
+--- !u!1 &4901611962837848597
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 748560743373047044}
-  - component: {fileID: 8780318462575557849}
+  - component: {fileID: 3585854433321741944}
+  - component: {fileID: 7510494130956730638}
   m_Layer: 0
-  m_Name: Spawner
+  m_Name: WeaponSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &748560743373047044
+--- !u!4 &3585854433321741944
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4597887491677052981}
+  m_GameObject: {fileID: 4901611962837848597}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9865382, y: 0.9345225, z: -0.011666623}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8780318462575557849
+--- !u!114 &7510494130956730638
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4597887491677052981}
+  m_GameObject: {fileID: 4901611962837848597}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04594258adb86844a9eeaa787530fae7, type: 3}
+  m_Script: {fileID: 11500000, guid: 694555ccf78e0a940b39a19949e0f61e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  axePrefab: {fileID: 5155438404635722608, guid: 0b78b967fdb54a54b978c6a179f70072, type: 3}
+  bulletPrefab: {fileID: 652346072133568390, guid: 11dd1758e64f5754eb0a5ac768bed803, type: 3}
+  sanctuaryPrefab: {fileID: 3937314640496724981, guid: e041b7fbc215b9745ab7a8696af0bd96, type: 3}
+  WeaponObjectName: 
