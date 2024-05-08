@@ -6,7 +6,7 @@ using UnityEngine;
 public class WeaponSpawner : MonoBehaviour
 {
     public GameObject weaponPrefab;
-    public static GameObject[] weapons = new GameObject[3];
+    public static GameObject[] weapons = new GameObject[5];
     public ExpCoin ExpCoinScript;
     int Level;
 

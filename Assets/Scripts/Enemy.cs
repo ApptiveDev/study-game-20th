@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 {
     private Transform player;
     float flag = 0;
-    private float EnemyHealthPoint = 1f;
+    private float EnemyHealthPoint = 2f;
     public GameObject ExpCoin;
     
     void Update() 
@@ -38,6 +38,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.tag == "Weapon")
         {
+            
             EnemyHealthPoint--;
             if (EnemyHealthPoint < 1) 
             {

@@ -9,12 +9,7 @@ public class ExpCoin : MonoBehaviour
         if (other.tag == "Player")
         {
             Character.Exp++;
-            if (Character.Exp > (Character.Level+1) * 5 && Character.Level < 3)
-            {
-                Character.Level++;
-                FindObjectOfType<WeaponSpawner>().SpawnWeapon();
-                Character.Exp = 0;
-            }
+            FindObjectOfType<Character>().LevelUp();
             Destroy(gameObject);
         }
     }
