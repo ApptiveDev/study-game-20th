@@ -6,9 +6,9 @@ using UnityEngine;
 public class WeaponSpawner : MonoBehaviour
 {
     public GameObject weaponPrefab;
-    public static GameObject[] weapons = new GameObject[5];
-    public ExpCoin ExpCoinScript;
-    int Level;
+    public GameObject[] weapons = new GameObject[5];
+    public RotatingWeapon RW;
+    private int Level;
 
     void Start() 
     {
@@ -17,7 +17,8 @@ public class WeaponSpawner : MonoBehaviour
 
     public void SpawnWeapon()
     {
-        Level = Character.Level;
+        RW = GameObject.Find("RotatingWeapon").GetComponent<RotatingWeapon>();
+        Level = RW.Level;
         GameObject weapon = Instantiate(weaponPrefab, new Vector3(1.5f,0,0), Quaternion.identity);
         weapons[Level] = weapon;
     }

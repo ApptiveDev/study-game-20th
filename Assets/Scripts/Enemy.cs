@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
 
             float distanceVector = Vector3.Distance(transform.position, player.position);
 
-            if (distanceVector < 15f) {
+            if (distanceVector < 33f) {
                 flag = 1;
             }
 
@@ -38,7 +38,6 @@ public class Enemy : MonoBehaviour
     {
         if (other.tag == "Weapon")
         {
-            
             EnemyHealthPoint--;
             if (EnemyHealthPoint < 1) 
             {

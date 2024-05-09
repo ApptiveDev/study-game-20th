@@ -7,16 +7,16 @@ public class RotatingWeapon : MonoBehaviour
     float circleR = 4f; //반지름
     float deg = 0; //각도
     float objSpeed = 400f; //원운동 속도
+    public int Level = 0;
+    private WeaponSpawner WS;
 
-
-    // Update is called once per frame
     void Update()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        int Level = Character.Level;
-        GameObject[] weapons = WeaponSpawner.weapons;
+        WS = GameObject.Find("WeaponSpawner").GetComponent<WeaponSpawner>();
+        GameObject[] weapons = WS.weapons;
 
-        deg+= Time.deltaTime*objSpeed;
+        deg += Time.deltaTime*objSpeed;
         if (player != null) {
             if (deg < 360)
             {
@@ -28,7 +28,7 @@ public class RotatingWeapon : MonoBehaviour
                     weapons[i].transform.position = player.transform.position + new Vector3(x, y);
                     weapons[i].transform.rotation = Quaternion.Euler(0, 0, -(deg + (i * (360 / (Level+1)))));
                 }
-            } 
+            }
             else
             {
                 deg = 0;

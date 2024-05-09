@@ -20,8 +20,8 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        float randomX = Random.Range(-16f, 16f);
-        float randomY = Random.Range(-8f, 8f);
+        float randomX = Random.Range(-31.5f, 31.5f);
+        float randomY = Random.Range(-15f, 15f);
 
         GameObject enemy = Instantiate(enemyPrefab, new Vector3(randomX, randomY, 0f), Quaternion.identity);
     }

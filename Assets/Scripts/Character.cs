@@ -2,76 +2,86 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {    
     private float CharacterHealthPoint = 10f;
-    public static int Exp = 0;
-    public static int Level = 0;
-    [SerializeField]
-    private Image hpBarImage;
-    [SerializeField]
-    private Image expBarImage;
-    [SerializeField]
-    private GameObject heart;
-    [SerializeField]
-    private GameObject expCoin;
+    public float Speed = 1;
+    public int Exp = 0;
+    public int Level = 0;
+    [SerializeField] private Image hpBarImage;
+    [SerializeField] private Image expBarImage;
+    [SerializeField] private GameObject heart;
+    [SerializeField] private GameObject expCoin;
     private float expPercent;
+    RotatingWeapon RW;
+    private Animator animator;
     
 
     void Start() {
-        Instantiate(heart,new Vector3(-16.73f,8.36f,0),Quaternion.identity);
-        Instantiate(expCoin,new Vector3(-16.73f,7.36f,0),Quaternion.identity);
+        animator = GetComponent<Animator>();
+        Instantiate(heart,new Vector3(-30.85f,15.97f,0),Quaternion.identity);
+        Instantiate(expCoin,new Vector3(-30.85f,13.82f,0),Quaternion.identity);
         hpBarImage.transform.position = new Vector3(298,1012,0);
         expBarImage.transform.position = new Vector3(298,939,0);
     }
 
     void Update()
     {
-        MoveAndflip();
+        Walk();
+        RunAndflip();
         HpBar();
         ExpBar();
     }
 
-    void MoveAndflip() 
+    void Walk() {
+        animator.SetInteger("AnimState",0);
+    }
+
+    void RunAndflip() 
     {
         Vector2 vec = new Vector2(0f,0f);
 
         if (Input.GetKey (KeyCode.A)) {
+            animator.SetInteger("AnimState",2);
             transform.localScale = new Vector3(3.3849f,3.3849f,3.3849f);
             vec.x = -1f;
         }
 
         if (Input.GetKey (KeyCode.D)) {
+            animator.SetInteger("AnimState",2);
             transform.localScale = new Vector3(-3.3849f,3.3849f,3.3849f);
             vec.x = 1f;
         }
 
         if (Input.GetKey (KeyCode.W)) {
+            animator.SetInteger("AnimState",2);
             vec.y = 1f;
         }
 
         if (Input.GetKey (KeyCode.S)) {
+            animator.SetInteger("AnimState",2);
             vec.y = -1f;
         }
 
-        transform.Translate(vec.normalized * Time.deltaTime * 8f);
+        transform.Translate(vec.normalized * Time.deltaTime * 8f * Speed);
 
-        if (transform.position.x < -16) {
-            transform.position = new Vector3(-16,transform.position.y,0);
+        if (transform.position.x < -31.5f) {
+            transform.position = new Vector3(-31.5f,transform.position.y,0);
         }
 
-        if (transform.position.x > 16) {
-            transform.position = new Vector3(16,transform.position.y,0);
+        if (transform.position.x > 31.5f) {
+            transform.position = new Vector3(31.5f,transform.position.y,0);
         }
 
-        if (transform.position.y < -9.6) {
-            transform.position = new Vector3(transform.position.x,-9.6f,0);
+        if (transform.position.y < -18) {
+            transform.position = new Vector3(transform.position.x,-18,0);
         }
 
-        if (transform.position.y > 5.25f) {
-            transform.position = new Vector3(transform.position.x,5.25f,0);
+        if (transform.position.y > 14) {
+            transform.position = new Vector3(transform.position.x,14,0);
         }
     }
 
@@ -80,27 +90,34 @@ public class Character : MonoBehaviour
         if (other.tag == "Enemy")
         {   
             CharacterHealthPoint--;
-            CharaterDead();
+            if (CharacterHealthPoint < 1) {
+                CharaterDead();
+            }
         }
     }
 
-    public void LevelUp() {
-        if ((Exp == (Level+1) * 5) & (Level < 4))
+    public void CheckLevelUp() {
+        if (Exp == ((Level+1) * 5))
         {
-            Time.timeScale = 0.03f;
-            GameObject.FindGameObjectWithTag("Image1").transform.position = new Vector3(960,540,0);
+            Level++;
+            RW = GameObject.Find("RotatingWeapon").GetComponent<RotatingWeapon>();
+            if (RW.Level < 4) {
+                Time.timeScale = 0f;
+                GameObject.FindGameObjectWithTag("Image1").transform.position = new Vector3(508.98f,540,0);
+                GameObject.FindGameObjectWithTag("Image2").transform.position = new Vector3(960,540,0);
+            }
+            else {
+                GameObject.FindGameObjectWithTag("Image2").transform.position = new Vector3(960,540,0);
+            }
             Exp = 0;
         }
     }
 
     private void CharaterDead()
     {
-        if (CharacterHealthPoint < 1)
-        {
-            HpBar();
-            gameObject.SetActive(false);
-            Time.timeScale = 0f;
-        }
+        HpBar();
+        gameObject.SetActive(false);
+        Time.timeScale = 0f;
     }
 
     private void HpBar() {
@@ -109,14 +126,7 @@ public class Character : MonoBehaviour
     }
 
     private void ExpBar() {
-        if (Level >= 4)
-        {
-            expPercent = 1;
-        }
-        else
-        {
-            expPercent = (float)Exp / (float)((Level+1)*5);
-        }
+        expPercent = (float)Exp / (float)((Level+1)*5);
         expBarImage.fillAmount = expPercent;
     }
 }

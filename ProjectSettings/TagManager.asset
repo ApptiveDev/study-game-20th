@@ -8,6 +8,8 @@ TagManager:
   - Weapon
   - Exp
   - Image1
+  - FxTemporaire
+  - Image2
   layers:
   - Default
   - TransparentFX
