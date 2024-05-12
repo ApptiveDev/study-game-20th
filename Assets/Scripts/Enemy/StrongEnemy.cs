@@ -19,7 +19,7 @@ public class StrongEnemy : MonoBehaviour
     void ShootBall()
     {
         CurrentTime += Time.deltaTime;
-        if (CurrentTime > 3f)
+        if (CurrentTime > 5f)
         {
             Instantiate(StrongEnemyBall,transform.position,Quaternion.identity);
             CurrentTime = 0;

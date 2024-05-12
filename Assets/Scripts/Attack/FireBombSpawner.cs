@@ -6,7 +6,7 @@ public class FireBombSpawner : MonoBehaviour
 {
     public GameObject FireBombPrefab;
     float CurrentTime;
-    public static float SpawnTime = 3f;
+    public static float SpawnTime = 2f;
     GameObject player;
     
 

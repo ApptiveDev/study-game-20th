@@ -88,7 +88,7 @@ public class Character : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag == "Enemy" || other.tag == "EnemyBall")
         {   
             CharacterHealthPoint--;
             if (CharacterHealthPoint < 1) {
@@ -102,7 +102,7 @@ public class Character : MonoBehaviour
         {
             Level++;
             RW = GameObject.Find("RotatingWeapon").GetComponent<RotatingWeapon>();
-            if (RW.Level < 4 && FireBombSpawner.SpawnTime >= 1) 
+            if (RW.Level < 4 && FireBombSpawner.SpawnTime > 0.5f) 
             {
                 Time.timeScale = 0f;
                 GameObject.FindGameObjectWithTag("Image1").transform.position = new Vector3(508.98f,540,0);
@@ -115,14 +115,14 @@ public class Character : MonoBehaviour
                 GameObject.FindGameObjectWithTag("Image2").transform.position = new Vector3(960,540,0);
                 GameObject.FindGameObjectWithTag("Image3").transform.position = new Vector3(1411.02f,540,0);
             }
-            else if (FireBombSpawner.SpawnTime <= 1)
+            else if (FireBombSpawner.SpawnTime <= 0.5f)
             {
                 GameObject.FindGameObjectWithTag("Image1").transform.position = new Vector3(508.98f,540,0);
                 GameObject.FindGameObjectWithTag("Image2").transform.position = new Vector3(960,540,0);
             }
             else
             {
-                GameObject.FindGameObjectWithTag("Image3").transform.position = new Vector3(1411.02f,540,0);
+                GameObject.FindGameObjectWithTag("Image2").transform.position = new Vector3(1411.02f,540,0);
             }
             Exp = 0;
         }

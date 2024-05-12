@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
             CurrentTime1 = 0;
         }
 
-        if (CurrentTime2 > 3f) {
+        if (CurrentTime2 > 4f) {
             SpawnStrongEnemy();
             CurrentTime2 = 0;
         }

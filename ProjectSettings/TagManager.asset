@@ -11,6 +11,7 @@ TagManager:
   - FxTemporaire
   - Image2
   - Image3
+  - EnemyBall
   layers:
   - Default
   - TransparentFX

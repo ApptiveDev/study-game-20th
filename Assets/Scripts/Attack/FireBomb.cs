@@ -54,7 +54,7 @@ public class FireBomb : MonoBehaviour
 
     void AttackEnemy()
     {
-        transform.position += initialTargetDirection * 5f * Time.deltaTime;
+        transform.position += initialTargetDirection * 8f * Time.deltaTime;
     }
 }
 
