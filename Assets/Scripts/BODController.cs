@@ -111,7 +111,7 @@ public class BODController : MonoBehaviour
     IEnumerator Attacking(RaycastHit2D hit)
     {
         yield return new WaitForSeconds(0.5f);
-        hit.collider.GetComponent<SlimeController>().Damaged(damage);
+        hit.collider.GetComponent<Enemy>().Damaged(damage);
         //mCameraController.ShakeCamera();
     }
 

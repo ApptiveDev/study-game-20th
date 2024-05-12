@@ -207,8 +207,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1774899788}
         m_TargetAssemblyTypeName: WeaponManager, Assembly-CSharp
-        m_MethodName: Weapon1
-        m_Mode: 1
+        m_MethodName: OnButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 57697626}
   - component: {fileID: 57697625}
   - component: {fileID: 57697629}
+  - component: {fileID: 57697631}
   - component: {fileID: 57697630}
   - component: {fileID: 57697627}
   - component: {fileID: 57697628}
@@ -392,6 +393,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 9056033911534156580, guid: f0abda87ad37a46bfb8d493c00e690df, type: 3}
+--- !u!114 &57697631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57697624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a0edd4d8b154dde8a8f71b3446196a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Jar: {fileID: 1040095067869615422, guid: d27196d81e3804f10b8f9e5490ab8ee7, type: 3}
 --- !u!1 &59070520
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,12 +771,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1774899788}
         m_TargetAssemblyTypeName: WeaponManager, Assembly-CSharp
-        m_MethodName: Weapon2
-        m_Mode: 1
+        m_MethodName: OnButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -817,6 +831,9 @@ GameObject:
   - component: {fileID: 335759928}
   - component: {fileID: 335759929}
   - component: {fileID: 335759930}
+  - component: {fileID: 335759931}
+  - component: {fileID: 335759932}
+  - component: {fileID: 335759933}
   m_Layer: 0
   m_Name: GameManagement
   m_TagString: Untagged
@@ -877,6 +894,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expJam: {fileID: 1254968996013539635, guid: 63445aaf55ac74399b90d6a2dc631fe0, type: 3}
+--- !u!114 &335759931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335759924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29bdd94d6526340af9bc37ca9c35ad68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LongAttackEnemy: {fileID: 8452821851569887149, guid: ee8483415763448aba0c7b5f62011403, type: 3}
+--- !u!114 &335759932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335759924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0aae7fa29ead4b0eb6c47f55033e278, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Arrow: {fileID: 7227054453687943295, guid: ac6f943530f6d4c5bb2dd4d725cbe762, type: 3}
+--- !u!114 &335759933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335759924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03424258f58cb4e498206d35e680ebc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gateKeeper: {fileID: 0}
 --- !u!1 &646224709
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,6 +1110,167 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880840374}
   m_CullTransparentMesh: 1
+--- !u!1 &891636589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 891636591}
+  - component: {fileID: 891636592}
+  - component: {fileID: 891636590}
+  - component: {fileID: 891636594}
+  - component: {fileID: 891636593}
+  m_Layer: 0
+  m_Name: GateKeeper
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &891636590
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891636589}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 1e5528d71c9294fa68018eade3818c63, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 22.24, y: 16.68}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &891636591
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891636589}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.619853, y: -0.26411414, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &891636592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891636589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d27bc2095f494aa49b11e385aa6a694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &891636593
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891636589}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &891636594
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891636589}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 5
 --- !u!1 &901883838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1280,12 +1497,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1774899788}
         m_TargetAssemblyTypeName: WeaponManager, Assembly-CSharp
-        m_MethodName: Weapon3
-        m_Mode: 1
+        m_MethodName: OnButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1417,6 +1634,7 @@ MonoBehaviour:
   swordSprite: {fileID: 21300000, guid: ee6d13c026fcc47ae8b63179bf62df20, type: 3}
   glopSprite: {fileID: 21300000, guid: 6eff859e0f5ba4ad0957595b040df7d2, type: 3}
   playerSprite: {fileID: 4072241969498346569, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
+  jarSprite: {fileID: 21300000, guid: 5b51c263c6eac4065a89635d52cc8c8d, type: 3}
 --- !u!222 &1774899789
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1941,3 +2159,4 @@ SceneRoots:
   - {fileID: 335759925}
   - {fileID: 1909628739}
   - {fileID: 59070523}
+  - {fileID: 891636591}

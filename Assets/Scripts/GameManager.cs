@@ -30,7 +30,15 @@ public class GameManager : MonoBehaviour
     GameObject mGameManager;
     GameObject camera;
     ExpJamPoolController mExpJamPoolController;
+    BossManager mBossManager;
 
+    int killEnemyCount = 0;
+
+    public void AddTokillEnemyCount(int num)
+    {
+        killEnemyCount += num;
+        mBossManager.UpdateKillEnemyCount(num);
+    }
 
     public void addEnemy(GameObject enemy)
     {
@@ -93,6 +101,7 @@ public class GameManager : MonoBehaviour
         player = GameObject.Find("BOD");
         playerExp = GameObject.Find("PlayerExp").GetComponent<ExpBar>();
         mExpJamPoolController = mGameManager.GetComponent<ExpJamPoolController>();
+        mBossManager = mGameManager.GetComponent<BossManager>();
     }
 
     // Start is called before the first frame update

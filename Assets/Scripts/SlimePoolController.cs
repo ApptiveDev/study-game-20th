@@ -7,7 +7,12 @@ public class SlimePoolController : ObjectPoolController
 
     [SerializeField] GameObject slime;
     GameManager gameManager;
+    bool spawnObject = true;
 
+    public void SetSpawnObject(bool boolValue)
+    {
+        spawnObject = boolValue;
+    }
 
     public void isDead(GameObject deadSlime)
     {
@@ -37,7 +42,10 @@ public class SlimePoolController : ObjectPoolController
         while (true)
         {
             yield return new WaitForSeconds(1);
-            RandomSpawnObject();
+            if (spawnObject)
+            {
+                RandomSpawnObject();
+            } 
         }
     }
 
