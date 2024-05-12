@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1328715524468341654}
   - component: {fileID: 6040417223841866515}
-  - component: {fileID: 4361050924130691960}
   - component: {fileID: 7249487469275174179}
   - component: {fileID: -7215000822116651010}
+  - component: {fileID: 1629159235891162211}
   m_Layer: 0
   m_Name: StrongEnemy
   m_TagString: Enemy
@@ -87,19 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4361050924130691960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8672839430144612909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43af0f34632ca0844af0b21df206fbfb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ExpCoin: {fileID: 6132709807897563840, guid: c714e1513685e484f8d8278f0e9d7ba3, type: 3}
 --- !u!61 &7249487469275174179
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -172,3 +159,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1629159235891162211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8672839430144612909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a19cb4d6afcdc1b43be1b226a1a8ae18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExpCoin: {fileID: 6132709807897563840, guid: c714e1513685e484f8d8278f0e9d7ba3, type: 3}
+  StrongEnemyBall: {fileID: 21630575897903827, guid: fb8884981507b524b9a38fa8bf43ad7d, type: 3}

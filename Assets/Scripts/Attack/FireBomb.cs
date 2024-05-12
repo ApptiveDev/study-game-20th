@@ -10,7 +10,7 @@ public class FireBomb : MonoBehaviour
 
     void Start() 
     {
-        ClosestEnemy();
+        ClosestEnemyDirection();
     }
 
     void Update()
@@ -27,7 +27,7 @@ public class FireBomb : MonoBehaviour
         }
     }
 
-    void ClosestEnemy() 
+    void ClosestEnemyDirection() 
     {
         GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemy");
         float distance = Mathf.Infinity;
@@ -54,7 +54,7 @@ public class FireBomb : MonoBehaviour
 
     void AttackEnemy()
     {
-        transform.position += initialTargetDirection * 4f * Time.deltaTime;
+        transform.position += initialTargetDirection * 5f * Time.deltaTime;
     }
 }
 
