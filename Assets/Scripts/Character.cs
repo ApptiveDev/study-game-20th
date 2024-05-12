@@ -17,6 +17,7 @@ public class Character : MonoBehaviour
     [SerializeField] private GameObject expCoin;
     private float expPercent;
     RotatingWeapon RW;
+    FireBomb FB;
     private Animator animator;
     
 
@@ -97,17 +98,31 @@ public class Character : MonoBehaviour
     }
 
     public void CheckLevelUp() {
-        if (Exp == ((Level+1) * 5))
+        if (Exp == ((Level+1) * 5) && Level < 8)
         {
             Level++;
             RW = GameObject.Find("RotatingWeapon").GetComponent<RotatingWeapon>();
-            if (RW.Level < 4) {
+            if (RW.Level < 4 && FireBombSpawner.SpawnTime >= 1) 
+            {
                 Time.timeScale = 0f;
                 GameObject.FindGameObjectWithTag("Image1").transform.position = new Vector3(508.98f,540,0);
                 GameObject.FindGameObjectWithTag("Image2").transform.position = new Vector3(960,540,0);
+                GameObject.FindGameObjectWithTag("Image3").transform.position = new Vector3(1411.02f,540,0);
             }
-            else {
+            else if (RW.Level >= 4)
+            {
+                Time.timeScale = 0f;
                 GameObject.FindGameObjectWithTag("Image2").transform.position = new Vector3(960,540,0);
+                GameObject.FindGameObjectWithTag("Image3").transform.position = new Vector3(1411.02f,540,0);
+            }
+            else if (FireBombSpawner.SpawnTime <= 1)
+            {
+                GameObject.FindGameObjectWithTag("Image1").transform.position = new Vector3(508.98f,540,0);
+                GameObject.FindGameObjectWithTag("Image2").transform.position = new Vector3(960,540,0);
+            }
+            else
+            {
+                GameObject.FindGameObjectWithTag("Image3").transform.position = new Vector3(1411.02f,540,0);
             }
             Exp = 0;
         }
@@ -126,7 +141,14 @@ public class Character : MonoBehaviour
     }
 
     private void ExpBar() {
-        expPercent = (float)Exp / (float)((Level+1)*5);
+        if (Level >= 8)
+        {
+            expPercent = 1;
+        }
+        else
+        {
+            expPercent = (float)Exp / (float)((Level+1)*5);
+        }
         expBarImage.fillAmount = expPercent;
     }
 }

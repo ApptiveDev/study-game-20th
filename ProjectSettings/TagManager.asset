@@ -10,6 +10,7 @@ TagManager:
   - Image1
   - FxTemporaire
   - Image2
+  - Image3
   layers:
   - Default
   - TransparentFX

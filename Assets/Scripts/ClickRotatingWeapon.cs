@@ -16,6 +16,7 @@ public class ClickRotatingWeapon : MonoBehaviour, IPointerClickHandler
             FindObjectOfType<WeaponSpawner>().SpawnWeapon();
             transform.position = new Vector3(169.66f,-524,0);
             GameObject.FindGameObjectWithTag("Image2").transform.position = new Vector3(169.66f,-524,0);
+            GameObject.FindGameObjectWithTag("Image3").transform.position = new Vector3(169.66f,-524,0);
             Time.timeScale = 1f;
         }
     }
