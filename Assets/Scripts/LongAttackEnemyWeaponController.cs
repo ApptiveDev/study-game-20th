@@ -6,7 +6,7 @@ public class LongAttackEnemyWeaponController : MonoBehaviour
 {
     Vector3 deltaTransform;
     LongAttackEnemyWeaponPoolController mPoolController;
-    int arrowSpeed = 10;
+    int arrowSpeed = 5;
     private void Start()
     {
         deltaTransform = new Vector3();

@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     protected float speed = 1f;
     protected ObjectPoolController objectPoolController;
     protected ExpJamPoolController mExpJamPoolController;
+    protected int attackNum = 0;
 
 
     public void Damaged(int damage = 1)
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour
             this.gameObject.SetActive(false);
             objectPoolController.AddToPool(this.gameObject);
             mExpJamPoolController.DropExpJam(transform.position);
+            GameManager.Instance.AddTokillEnemyCount(1);
         }
     }
 
@@ -28,6 +30,7 @@ public class Enemy : MonoBehaviour
         if (collision.tag == "Player")
         {
             collision.GetComponent<BODController>().Damaged();
+            attackNum += 1;
         }
     }
 }

@@ -41,7 +41,7 @@ public class LongAttackEnemyPoolController : ObjectPoolController
     {
         while (true)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(4);
             if (spawnObject)
             {
                 RandomSpawnObject();

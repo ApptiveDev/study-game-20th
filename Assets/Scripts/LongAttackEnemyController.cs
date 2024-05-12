@@ -22,7 +22,7 @@ public class LongAttackEnemyController : Enemy
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(3f);
             mArrowPoolController.ShotArrowToPlayer(transform.position);
         }
     }

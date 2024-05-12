@@ -20,10 +20,9 @@ public class BossManager : MonoBehaviour
 
     public void UpdateKillEnemyCount(int count)
     {
-        if (count >= 50)
+        if (count >= 10)
         {
             InitBossStage();
-            
         }
     }
 
