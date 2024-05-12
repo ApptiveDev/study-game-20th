@@ -8,7 +8,7 @@ public class ObjectPoolController : MonoBehaviour
 
     protected List<GameObject> ObjectPool = new List<GameObject>();
 
-    protected void AddToPool(GameObject Object)
+    public void AddToPool(GameObject Object)
     {
         ObjectPool.Add(Object);
     }
@@ -24,7 +24,7 @@ public class ObjectPoolController : MonoBehaviour
     }
 
 
-    protected void RandomSpawnObject()
+    protected GameObject RandomSpawnObject()
     {
         if (ObjectPool.Count > 0)
         {
@@ -35,14 +35,14 @@ public class ObjectPoolController : MonoBehaviour
             ObjectPool.RemoveAt(0);
             
             bady.GetComponent<Transform>().position = new Vector3(x, y, 0);
-
+            return bady;
         } else
         {
-            return;
+            return null;
         }
     }
 
-    protected void SpawnObject(Vector3 position)
+    protected GameObject SpawnObject(Vector3 position)
     {
         if (ObjectPool.Count > 0)
         {
@@ -51,11 +51,11 @@ public class ObjectPoolController : MonoBehaviour
             ObjectPool.RemoveAt(0);
 
             bady.GetComponent<Transform>().position = new Vector3(position.x, position.y, 0);
-
+            return bady;
         }
         else
         {
-            return;
+            return null;
         }
     }
 

@@ -18,7 +18,7 @@ public class Weapon : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             numAttack += 1;
-            collision.GetComponent<SlimeController>().Damaged();
+            collision.GetComponent<Enemy>().Damaged();
         }
     }
 

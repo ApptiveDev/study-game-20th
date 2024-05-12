@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOverController: MonoBehaviour
 {
@@ -14,33 +15,34 @@ public class GameOverController: MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void PlayerDead()
     {
         gameObject.SetActive(true);
         Time.timeScale = 0.1f;
         StartCoroutine(GameOvered());
+        print("tlqkf");
     }
 
     IEnumerator GameOvered()
     {
         yield return new WaitForSeconds(1.0f);
+        print("tlqkf");
         while (true)
         {
-            yield return new WaitForSeconds(0.01f);
+            print("restart");
             if (Input.anyKey)
             {
                 break;
+               
             }
         }
         gameObject.SetActive(false);
         Time.timeScale = 1;
-        gameManager.getPlayer().GetComponent<BODController>().SpawnPlayer();
+        print("restart");
+        SceneManager.LoadScene("SceneByYS");
+
+
+        //gameManager.getPlayer().GetComponent<BODController>().SpawnPlayer();
 
     }
 }

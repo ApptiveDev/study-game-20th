@@ -9,6 +9,7 @@ public class WeaponManager : MonoBehaviour
     GlopPoolController glop;
     Swords swords;
     BODController player;
+    JarPoolController jar;
     [SerializeField] GameObject Button1;
     [SerializeField] GameObject Button2;
     [SerializeField] GameObject Button3;
@@ -16,7 +17,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] Sprite swordSprite;
     [SerializeField] Sprite glopSprite;
     [SerializeField] Sprite playerSprite;
-
+    [SerializeField] Sprite jarSprite;
     
     int numSelect = 0;
     List<int> weapons = new List<int>();
@@ -30,6 +31,7 @@ public class WeaponManager : MonoBehaviour
         gameManager = GameManager.Instance;
         player = gameManager.getPlayer().GetComponent<BODController>();
         glop = gameManager.getPlayer().GetComponent<GlopPoolController>();
+        jar = gameManager.getPlayer().GetComponent<JarPoolController>();
         swords = gameManager.getPlayer().GetComponent<Swords>();
         initLists();
         gameObject.SetActive(false);
@@ -37,7 +39,7 @@ public class WeaponManager : MonoBehaviour
 
     void initLists()
     {
-        for (int i =0; i<3; i++)
+        for (int i =0; i<4; i++)
         {
             weapons.Add(i);
         }
@@ -45,6 +47,7 @@ public class WeaponManager : MonoBehaviour
         sprites.Add(swordSprite);
         sprites.Add(glopSprite);
         sprites.Add(playerSprite);
+        sprites.Add(jarSprite);
 
         Buttons.Add(Button1);
         Buttons.Add(Button2);
@@ -60,7 +63,9 @@ public class WeaponManager : MonoBehaviour
     }
 
     void randomlySelectWeapon3()
-    { 
+    {
+        selectedNumbers.Clear();
+
         while (selectedNumbers.Count < 3)
         {
             int randomNumber = Random.Range(0, weapons.Count); // 예를 들어, 1부터 10까지의 숫자를 랜덤으로 선택
@@ -92,7 +97,9 @@ public class WeaponManager : MonoBehaviour
             case 2:
                 player.setDamage(player.getDamage() + 1);
                 break;
-
+            case 3:
+                jar.setShotJarTime(jar.getShotJarTime() + 1);
+                break;
             default:
                 break;
         }
@@ -107,25 +114,8 @@ public class WeaponManager : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void Weapon1()
+    public void OnButtonClick(int num)
     {
-        selectWeapon(selectedNumbers[0]);
-        
-    }
-
-    public void Weapon2()
-    {
-        selectWeapon(selectedNumbers[1]);
-    }
-
-    public void Weapon3()
-    {
-        selectWeapon(selectedNumbers[2]);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        selectWeapon(selectedNumbers[num]);
     }
 }
