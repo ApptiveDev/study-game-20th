@@ -6,15 +6,12 @@ using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour
 {
     bool flag = true;
-    Character CH;
-    
+
     void Update()
     {
-        CH = GameObject.Find("Character").GetComponent<Character>();
-        if (CH.GameOver && flag)
+        if (flag)
         {
             GameOverUI();
-            flag = false;
         }
     }
 
@@ -25,7 +22,8 @@ public class GameOver : MonoBehaviour
         {
             Time.timeScale = 1f;
             gameObject.SetActive(false);
-            SceneManager.LoadScene(0);
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+            flag = false;
         }
     }
 }

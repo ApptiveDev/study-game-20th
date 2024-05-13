@@ -1307,7 +1307,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a59af771729cc5449621556a2cefdd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameOverPanel: {fileID: 1326341990}
 --- !u!1 &1454127469
 GameObject:
   m_ObjectHideFlags: 0
@@ -2167,6 +2166,7 @@ MonoBehaviour:
   heart: {fileID: 2497204956949134849, guid: b8623acf64cad52409461fdc6280ddff, type: 3}
   expCoin: {fileID: 6132709807897563840, guid: c714e1513685e484f8d8278f0e9d7ba3, type: 3}
   GameOver: 0
+  GameOverPanel: {fileID: 1326341990}
 --- !u!4 &2775804668874986945
 Transform:
   m_ObjectHideFlags: 0

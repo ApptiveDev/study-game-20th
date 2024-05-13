@@ -20,6 +20,7 @@ public class Character : MonoBehaviour
     FireBomb FB;
     private Animator animator;
     public bool GameOver = false;
+    public GameObject GameOverPanel;
     
 
     void Start() {
@@ -150,6 +151,8 @@ public class Character : MonoBehaviour
         HpBar();
         GameOver = true;
         animator.SetInteger("AnimState",4);
+        Time.timeScale = 0.33f;
+        GameOverPanel.SetActive(true);
     }
 
     private void HpBar() {
