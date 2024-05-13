@@ -7,7 +7,8 @@ public class FireBomb : MonoBehaviour
     GameObject target;
     Vector3 initialTargetDirection;
     bool isTargetSet = false;
-
+    private string[] tags = {"Enemy","Boss"};
+    float distance = Mathf.Infinity;
     void Start() 
     {
         ClosestEnemyDirection();
@@ -29,16 +30,17 @@ public class FireBomb : MonoBehaviour
 
     void ClosestEnemyDirection() 
     {
-        GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        float distance = Mathf.Infinity;
-
-        foreach (GameObject enemy in Enemies)
+        foreach (string tag in tags)
         {
-            float enemyDistance = Vector2.Distance(enemy.transform.position, transform.position);
-            if (distance > enemyDistance)
+            GameObject[] Enemies = GameObject.FindGameObjectsWithTag(tag);
+            foreach (GameObject enemy in Enemies)
             {
-                distance = enemyDistance;
-                target = enemy;
+                float enemyDistance = Vector2.Distance(enemy.transform.position, transform.position);
+                if (distance > enemyDistance)
+                {
+                    distance = enemyDistance;
+                    target = enemy;
+                }
             }
         }
 

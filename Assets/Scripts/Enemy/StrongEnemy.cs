@@ -9,6 +9,7 @@ public class StrongEnemy : MonoBehaviour
     GameObject player;
     [SerializeField] private GameObject StrongEnemyBall;
     float CurrentTime;
+    Character CH;
 
 
     void Update()
@@ -19,7 +20,8 @@ public class StrongEnemy : MonoBehaviour
     void ShootBall()
     {
         CurrentTime += Time.deltaTime;
-        if (CurrentTime > 5f)
+        CH = GameObject.Find("Character").GetComponent<Character>();
+        if (CurrentTime > 5f && !CH.GameOver)
         {
             Instantiate(StrongEnemyBall,transform.position,Quaternion.identity);
             CurrentTime = 0;

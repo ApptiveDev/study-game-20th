@@ -12,6 +12,7 @@ TagManager:
   - Image2
   - Image3
   - EnemyBall
+  - Boss
   layers:
   - Default
   - TransparentFX

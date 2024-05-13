@@ -19,6 +19,7 @@ public class Character : MonoBehaviour
     RotatingWeapon RW;
     FireBomb FB;
     private Animator animator;
+    public bool GameOver = false;
     
 
     void Start() {
@@ -38,51 +39,58 @@ public class Character : MonoBehaviour
     }
 
     void Walk() {
-        animator.SetInteger("AnimState",0);
+        if (!GameOver)
+        {
+            animator.SetInteger("AnimState",0);
+        }
+        
     }
 
     void RunAndflip() 
     {
-        Vector2 vec = new Vector2(0f,0f);
+        if (!GameOver)
+        {
+            Vector2 vec = new Vector2(0f,0f);
 
-        if (Input.GetKey (KeyCode.A)) {
-            animator.SetInteger("AnimState",2);
-            transform.localScale = new Vector3(3.3849f,3.3849f,3.3849f);
-            vec.x = -1f;
-        }
+            if (Input.GetKey (KeyCode.A)) {
+                animator.SetInteger("AnimState",2);
+                transform.localScale = new Vector3(3.3849f,3.3849f,3.3849f);
+                vec.x = -1f;
+            }
 
-        if (Input.GetKey (KeyCode.D)) {
-            animator.SetInteger("AnimState",2);
-            transform.localScale = new Vector3(-3.3849f,3.3849f,3.3849f);
-            vec.x = 1f;
-        }
+            if (Input.GetKey (KeyCode.D)) {
+                animator.SetInteger("AnimState",2);
+                transform.localScale = new Vector3(-3.3849f,3.3849f,3.3849f);
+                vec.x = 1f;
+            }
 
-        if (Input.GetKey (KeyCode.W)) {
-            animator.SetInteger("AnimState",2);
-            vec.y = 1f;
-        }
+            if (Input.GetKey (KeyCode.W)) {
+                animator.SetInteger("AnimState",2);
+                vec.y = 1f;
+            }
 
-        if (Input.GetKey (KeyCode.S)) {
-            animator.SetInteger("AnimState",2);
-            vec.y = -1f;
-        }
+            if (Input.GetKey (KeyCode.S)) {
+                animator.SetInteger("AnimState",2);
+                vec.y = -1f;
+            }
 
-        transform.Translate(vec.normalized * Time.deltaTime * 8f * Speed);
+            transform.Translate(vec.normalized * Time.deltaTime * 8f * Speed);
 
-        if (transform.position.x < -31.5f) {
-            transform.position = new Vector3(-31.5f,transform.position.y,0);
-        }
+            if (transform.position.x < -31.5f) {
+                transform.position = new Vector3(-31.5f,transform.position.y,0);
+            }
 
-        if (transform.position.x > 31.5f) {
-            transform.position = new Vector3(31.5f,transform.position.y,0);
-        }
+            if (transform.position.x > 31.5f) {
+                transform.position = new Vector3(31.5f,transform.position.y,0);
+            }
 
-        if (transform.position.y < -18) {
-            transform.position = new Vector3(transform.position.x,-18,0);
-        }
+            if (transform.position.y < -18) {
+                transform.position = new Vector3(transform.position.x,-18,0);
+            }
 
-        if (transform.position.y > 14) {
-            transform.position = new Vector3(transform.position.x,14,0);
+            if (transform.position.y > 14) {
+                transform.position = new Vector3(transform.position.x,14,0);
+            }
         }
     }
 
@@ -95,6 +103,14 @@ public class Character : MonoBehaviour
                 CharaterDead();
             }
         }
+
+        if (other.tag == "Boss")
+        {
+            CharacterHealthPoint -= 2;
+            if (CharacterHealthPoint < 1) {
+                CharaterDead();
+            }
+        }
     }
 
     public void CheckLevelUp() {
@@ -102,6 +118,7 @@ public class Character : MonoBehaviour
         {
             Level++;
             RW = GameObject.Find("RotatingWeapon").GetComponent<RotatingWeapon>();
+            Time.timeScale = 0f;
             if (RW.Level < 4 && FireBombSpawner.SpawnTime > 0.5f) 
             {
                 Time.timeScale = 0f;
@@ -131,8 +148,8 @@ public class Character : MonoBehaviour
     private void CharaterDead()
     {
         HpBar();
-        gameObject.SetActive(false);
-        Time.timeScale = 0f;
+        GameOver = true;
+        animator.SetInteger("AnimState",4);
     }
 
     private void HpBar() {

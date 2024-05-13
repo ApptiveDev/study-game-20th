@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FireBombSpawner : MonoBehaviour
 {
+    Character CH;
     public GameObject FireBombPrefab;
     float CurrentTime;
     public static float SpawnTime = 2f;
@@ -12,9 +13,10 @@ public class FireBombSpawner : MonoBehaviour
 
     void Update()
     {
+        CH = GameObject.Find("Character").GetComponent<Character>();
         CurrentTime += Time.deltaTime;
 
-        if (CurrentTime > SpawnTime) {
+        if (CurrentTime > SpawnTime && !CH.GameOver) {
             SpawnFireBomb();
             CurrentTime = 0;
         }
