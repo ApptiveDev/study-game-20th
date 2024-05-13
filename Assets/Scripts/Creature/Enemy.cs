@@ -5,10 +5,10 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     GameObject player;
-    GameObject ExpObject;
     float moveSpeed = 2f;
     Vector3 moveVector;
     public GameObject ExpObjectPrefab;
+    public int DeadCount = 0;
 
     void Start()
     {
@@ -39,10 +39,11 @@ public class Enemy : MonoBehaviour
     void EnemyDead()
     {
         Destroy(gameObject);
+        DeadCount++;
     }
 
-    void LeaveExp() 
+    GameObject LeaveExp() 
     {
-        ExpObject = Instantiate(ExpObjectPrefab ,transform.position, Quaternion.identity);
+        return Instantiate(ExpObjectPrefab ,transform.position, Quaternion.identity);
     }
 }

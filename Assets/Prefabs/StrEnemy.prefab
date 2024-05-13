@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1328715524468341654}
   - component: {fileID: 6040417223841866515}
-  - component: {fileID: 4361050924130691960}
   - component: {fileID: -4097498805787354076}
   - component: {fileID: -7063326321067255511}
+  - component: {fileID: 3505944746359899240}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: StrEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d1f94eb541d98c94c9e0a776707e9c7c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.013207495, b: 0.026343072, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -87,19 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4361050924130691960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8672839430144612909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43af0f34632ca0844af0b21df206fbfb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ExpObjectPrefab: {fileID: 652346072133568390, guid: 6aee24e7009d8ae42a70ca7d3e552c92, type: 3}
 --- !u!61 &-4097498805787354076
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -172,3 +159,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3505944746359899240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8672839430144612909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee57e343ef9b2b9419226c7c88a0f909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExpObjectPrefab: {fileID: 652346072133568390, guid: 6aee24e7009d8ae42a70ca7d3e552c92, type: 3}
+  Health: 100
