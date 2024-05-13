@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Content;
 using UnityEngine;
 
-public class Enemy : PoolAble
+public class Enemy : MonoBehaviour
 {
     GameObject player;
-    GameObject ExpObject;
     float moveSpeed = 2f;
     Vector3 moveVector;
+    public GameObject ExpObjectPrefab;
+    public int DeadCount = 0;
 
     void Start()
     {
@@ -37,11 +39,12 @@ public class Enemy : PoolAble
 
     void EnemyDead()
     {
-        ReleaseObject();
+        Destroy(gameObject);
+        DeadCount++;
     }
 
-    void LeaveExp() 
+    GameObject LeaveExp() 
     {
-        Instantiate(ExpObject,transform.position, Quaternion.identity);
+        return Instantiate(ExpObjectPrefab ,transform.position, Quaternion.identity);
     }
 }

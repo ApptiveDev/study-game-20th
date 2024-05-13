@@ -45,6 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axePrefab: {fileID: 5155438404635722608, guid: 0b78b967fdb54a54b978c6a179f70072, type: 3}
-  bulletPrefab: {fileID: 652346072133568390, guid: 11dd1758e64f5754eb0a5ac768bed803, type: 3}
+  bulletSpawnerPrefab: {fileID: 8196918044271696732, guid: bba35696235d8de4f908287fab00bd64, type: 3}
   sanctuaryPrefab: {fileID: 3937314640496724981, guid: e041b7fbc215b9745ab7a8696af0bd96, type: 3}
   WeaponObjectName: 

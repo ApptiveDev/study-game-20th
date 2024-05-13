@@ -12,15 +12,15 @@ public class ExpObject : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
-            Character.Exp++;
+            /*Character.Exp++;
             if (Character.Exp > Character.MaxExp)
             {
                 Character.Level++;
                 WeaponSelectionManager.Instance.OpenWeaponSelection();
                 Character.Exp = 0;
-            }
+            }*/
             Destroy(gameObject);
         }
     }

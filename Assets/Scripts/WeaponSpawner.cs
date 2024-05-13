@@ -1,40 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class WeaponSpawner : PoolAble
+
+public class WeaponSpawner : MonoBehaviour
 {
-    public GameObject axePrefab;
-    public GameObject bulletPrefab;
-    public GameObject sanctuaryPrefab;
-    private ObjectPoolManager poolManager;
-    public string WeaponObjectName;
+    [SerializeField] protected float spawnDelay = 1f;
+    [SerializeField] protected int spawnAmount = 1;
 
-    private GameObject[] weapons = new GameObject[3]; // ë¬´ê¸° ë°°ì—´
+    [SerializeField] protected GameObject weaponObject;
 
-    void Start()
+    protected void Start()
     {
-        poolManager = ObjectPoolManager.instance;
-        SpawnWeapons();
+        StartCoroutine(SpawnbyTime());
     }
 
-    public void SpawnWeapons()
+    protected IEnumerator SpawnbyTime() // ÄÚ·çÆ¾
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Vector3 playerPosition = player.transform.position;
-        
-        GameObject axe = poolManager.GetGo("Axe");
-        axe.transform.position = playerPosition;
-        axe.SetActive(true);
-        weapons[0] = axe;
+        while (true)
+        {
+            yield return new WaitForSeconds(spawnDelay);
 
-        GameObject bullet = poolManager.GetGo("Bullet");
-        bullet.transform.position = playerPosition;
-        bullet.SetActive(true);
-        weapons[1] = bullet;
-
-        GameObject sanctuary = poolManager.GetGo("Sanctuary");
-        sanctuary.transform.position = playerPosition;
-        sanctuary.SetActive(true);
-        weapons[2] = sanctuary;
+            for (int i = 0; i < spawnAmount; i++)
+            {
+                SpawnObject();
+            }
+        }
     }
+
+    protected virtual GameObject SpawnObject()
+    {
+        //½ºÆù
+        return Instantiate(weaponObject, transform.position, Quaternion.identity);
+    }
+   
 }
