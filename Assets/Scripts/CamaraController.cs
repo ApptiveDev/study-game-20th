@@ -7,17 +7,22 @@ public class CamaraController : MonoBehaviour
     float shakeCameraTime = 1.0f;
     float shakeCameraSpeed = 2.0f;
     float shakeCameraAmount = 1.0f;
+    Transform playerTransform;
+    Vector3 nextPosition;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerTransform = GameManager.Instance.getPlayer().transform;
+        nextPosition = new Vector3();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        nextPosition = playerTransform.position;
+        nextPosition.z = -10;
+        transform.position = nextPosition;
     }
 
     public void ShakeCamera()

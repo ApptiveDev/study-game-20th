@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     public void AddTokillEnemyCount(int num)
     {
         killEnemyCount += num;
-        mBossManager.UpdateKillEnemyCount(num);
+        mBossManager.UpdateKillEnemyCount(killEnemyCount);
     }
 
     public void addEnemy(GameObject enemy)

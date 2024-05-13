@@ -24,12 +24,12 @@ public class ObjectPoolController : MonoBehaviour
     }
 
 
-    protected GameObject RandomSpawnObject()
+    protected GameObject RandomSpawnObject(Vector3 position)
     {
         if (ObjectPool.Count > 0)
         {
-            float y = Random.RandomRange(-5, 5);
-            float x = Random.RandomRange(-7, 7);
+            float y =  Random.RandomRange(-5, 5) +position.y;
+            float x = Random.RandomRange(-7, 7) + position.x ; 
             GameObject bady = ObjectPool[0];
             bady.SetActive(true);
             ObjectPool.RemoveAt(0);
@@ -58,12 +58,4 @@ public class ObjectPoolController : MonoBehaviour
             return null;
         }
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-        
-    }
-
 }
