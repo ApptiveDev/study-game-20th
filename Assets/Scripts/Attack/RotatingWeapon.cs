@@ -38,15 +38,6 @@ public class RotatingWeapon : MonoBehaviour
                     deg = 0;
                 }
             }
-            else
-            {
-                Destroy(gameObject);
-            }
         }
-        else
-        {
-            Destroy(gameObject);
-        }
-
     }
 }

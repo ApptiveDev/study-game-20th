@@ -25,6 +25,7 @@ public class GameOver : MonoBehaviour
         {
             Time.timeScale = 1f;
             gameObject.SetActive(false);
+            ClearComponent();
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
             flag = false;
         }
@@ -39,7 +40,6 @@ public class GameOver : MonoBehaviour
         CH.Level = 0;
         CH.Exp = 0;
         CH.Speed = 1;
-        WS.weapons = new GameObject[5];
         FireBombSpawner.SpawnTime = 2f;
     }
 }
