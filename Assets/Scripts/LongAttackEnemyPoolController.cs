@@ -6,6 +6,7 @@ public class LongAttackEnemyPoolController : ObjectPoolController
 {
     [SerializeField] GameObject LongAttackEnemy;
     GameManager gameManager;
+    Transform playerTransform;
 
     bool spawnObject = true;
 
@@ -32,6 +33,7 @@ public class LongAttackEnemyPoolController : ObjectPoolController
     void Start()
     {
         gameManager = GameManager.Instance;
+        playerTransform = gameManager.getPlayer().transform;
         MakeObjects(LongAttackEnemy, 10);
         AddtoEnemyList();
         StartCoroutine(SpawnObject());
@@ -44,7 +46,7 @@ public class LongAttackEnemyPoolController : ObjectPoolController
             yield return new WaitForSeconds(4);
             if (spawnObject)
             {
-                RandomSpawnObject();
+                RandomSpawnObject(playerTransform.position);
             }
         }
     }

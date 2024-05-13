@@ -9,6 +9,8 @@ public class BossManager : MonoBehaviour
     GameObject gameManagement;
 
     [SerializeField] GameObject gateKeeper;
+    GameObject temp;
+
 
     // Start is called before the first frame update
     void Start()
@@ -20,8 +22,9 @@ public class BossManager : MonoBehaviour
 
     public void UpdateKillEnemyCount(int count)
     {
-        if (count >= 10)
-        {
+        print(count);
+        if (count >= 10 & temp == null)
+        {   
             InitBossStage();
         }
     }
@@ -30,7 +33,7 @@ public class BossManager : MonoBehaviour
     {
         gameManagement.GetComponent<SlimePoolController>().SetSpawnObject(false);
         gameManagement.GetComponent<LongAttackEnemyPoolController>().SetSpawnObject(false);
-        GameObject temp = Instantiate(gateKeeper, new Vector3(0, 0, 0), Quaternion.identity);
+        temp = Instantiate(gateKeeper, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
 }

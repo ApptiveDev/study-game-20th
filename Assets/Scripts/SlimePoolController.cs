@@ -8,6 +8,7 @@ public class SlimePoolController : ObjectPoolController
     [SerializeField] GameObject slime;
     GameManager gameManager;
     bool spawnObject = true;
+    Transform playerTransform;
 
     public void SetSpawnObject(bool boolValue)
     {
@@ -35,6 +36,7 @@ public class SlimePoolController : ObjectPoolController
         MakeObjects(slime, 10);
         AddtoEnemyList();
         StartCoroutine(SpawnObject());
+        playerTransform = gameManager.transform;
     }
 
     IEnumerator SpawnObject()
@@ -44,7 +46,7 @@ public class SlimePoolController : ObjectPoolController
             yield return new WaitForSeconds(3);
             if (spawnObject)
             {
-                RandomSpawnObject();
+                RandomSpawnObject(playerTransform.position);
             } 
         }
     }
