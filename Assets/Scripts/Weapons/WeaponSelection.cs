@@ -1,5 +1,5 @@
 using UnityEngine;
-public class WeaponSelectionManager : PoolAble
+public class WeaponSelectionManager : MonoBehaviour
 {
     public static WeaponSelectionManager Instance;
     GameObject weapon;

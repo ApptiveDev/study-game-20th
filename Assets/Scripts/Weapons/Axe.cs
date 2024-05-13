@@ -1,9 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
-public class Axe : PoolAble
+public class Axe : MonoBehaviour
 {
-    private float upSpeed = 3f; // 무기의 상승 속도
+    private float upSpeed = 20f; // 무기의 상승 속도
     private Vector3 moveDirection; // 무기의 이동 방향
 
     float Timescale = 0;
@@ -28,9 +28,9 @@ public class Axe : PoolAble
             moveDirection = Vector3.up;
             transform.position += moveDirection * upSpeed * Time.deltaTime;
 
-            if (Timescale > 10f) 
+            if (Timescale > 5f) 
             {
-                ReleaseObject();
+                Destroy(gameObject);
                 Timescale = 0;
             }
     }
@@ -39,7 +39,7 @@ public class Axe : PoolAble
     {
         if (other.CompareTag("Enemy")) 
         {
-                ReleaseObject();
+                Destroy(gameObject);
         }
     }
 
