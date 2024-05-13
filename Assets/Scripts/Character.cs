@@ -20,7 +20,9 @@ public class Character : MonoBehaviour
     FireBomb FB;
     private Animator animator;
     public bool GameOver = false;
+    public bool GameClear = false;
     public GameObject GameOverPanel;
+    public GameObject GameClearPanel;
     
 
     void Start() {
@@ -37,6 +39,10 @@ public class Character : MonoBehaviour
         RunAndflip();
         HpBar();
         ExpBar();
+        if (GameClear)
+        {
+            GameClearPanel.SetActive(true);
+        }
     }
 
     void Walk() {

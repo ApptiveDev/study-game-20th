@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
+    Character CH;
     private float BossHealthPoint = 20f;
     GameObject player;
+    
+
     void Update()
     {
         MoveToCharacter();
@@ -19,13 +22,16 @@ public class Boss : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        CH = GameObject.Find("Character").GetComponent<Character>();
         if (other.tag == "Weapon")
         {
             BossHealthPoint--;
             if (BossHealthPoint < 1) 
             {
+                CH.GameOver = true;
+                CH.GameClear = true;
                 Destroy(gameObject);
-                Time.timeScale = 0f;
+                Time.timeScale = 0.33f;
             }
         }
     }
