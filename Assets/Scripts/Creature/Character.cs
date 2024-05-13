@@ -1,26 +1,34 @@
+
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Android.Types;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 3f;
     Vector3 moveVector ;
+    public Image hpBarImage;
+    public Image expBarImage;
     public int Health = 100;
     public static int Exp = 0;
     public static int MaxExp = Level * 5;
     public static int Level = 1;
+    private float expPercent;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+    
     }
 
     // Update is called once per frame
     void Update()
     {
+        HpBar();
+        ExpBar();
         MoveTransform() ;
         if (Health < 1)
         {
@@ -85,25 +93,20 @@ public class Character : MonoBehaviour
             Time.timeScale = 0f;
     }
 
-}
-
-    
-=======
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Character : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private void HpBar() {
+        float hpPercent = Health / 10f;
+        hpBarImage.fillAmount = hpPercent;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void ExpBar() {
+        if (Level >= 8)
+        {
+            expPercent = 1;
+        }
+        else
+        {
+            expPercent = (float)Exp / (float)((Level+1)*5);
+        }
+        expBarImage.fillAmount = expPercent;
     }
 }

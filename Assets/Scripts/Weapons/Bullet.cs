@@ -6,28 +6,24 @@ public class Bullet : MonoBehaviour
     public float speed = 10f;
     Transform target ;
     Vector3 moveVector;
-    EnemySpawner spawner;
 
     Transform FindShorttestTtarget()
     {
-        float shortest = float.MaxValue;
-        int shortestIndex  = -1;
-        spawner = GameObject.FindAnyObjectByType<EnemySpawner>();
-        List<Enemy> enemyList =  spawner.enemyList;
-        for(int i = 0; i < enemyList.Count; i++)
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Transform nearestEnemy = null;
+        float shortestDistance = float.MaxValue;
+
+        foreach (GameObject enemy in enemies)
         {
-            float distance  = Vector3.Distance(enemyList[i].transform.position, transform.position);
-            if(distance < shortest)
+            float distance = Vector3.Distance(enemy.transform.position, transform.position);
+            if (distance < shortestDistance)
             {
-                shortest = distance;
-                shortestIndex = i;
+                shortestDistance = distance;
+                nearestEnemy = enemy.transform;
             }
         }
-        if (shortestIndex == -1) 
-        {
-            return null;
-        }
-        return enemyList[shortestIndex].transform;
+
+        return nearestEnemy;
     }
     void Start()
     {   
@@ -45,9 +41,9 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.transform.Equals(target))
+        if (collision.CompareTag("Enemy") && collision.transform == target)
         {
-            Destroy(target);
+            Destroy(gameObject);
         }
     }
 }
