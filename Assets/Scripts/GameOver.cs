@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
+    RotatingWeapon RW;
+    Character CH;
+    WeaponSpawner WS;
     bool flag = true;
 
     void Update()
@@ -25,5 +28,18 @@ public class GameOver : MonoBehaviour
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
             flag = false;
         }
+    }
+
+    void ClearComponent()
+    {
+        RW = GameObject.Find("RotatingWeapon").GetComponent<RotatingWeapon>();
+        CH = GameObject.Find("Character").GetComponent<Character>();
+        WS = GameObject.Find("WeaponSpawner").GetComponent<WeaponSpawner>();
+        RW.Level = 0;
+        CH.Level = 0;
+        CH.Exp = 0;
+        CH.Speed = 1;
+        WS.weapons = new GameObject[5];
+        FireBombSpawner.SpawnTime = 2f;
     }
 }

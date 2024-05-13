@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6114594053707362092}
   - component: {fileID: -6552770127189967643}
   m_Layer: 0
-  m_Name: RotateWeapon
+  m_Name: Weapon
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
