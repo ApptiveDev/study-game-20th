@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class BODController : MonoBehaviour
 {
-    private CamaraController mCameraController;
     private Rigidbody2D mRigid;
     private Animator mAnimator;
     private float speed = 5;
@@ -14,6 +13,8 @@ public class BODController : MonoBehaviour
     private GameManager mGameManager;
     private HpBar hpBar;
     int damage = 1;
+    private GameDataController mGameDataController;
+
 
     public int getHp()
     {
@@ -30,19 +31,23 @@ public class BODController : MonoBehaviour
         this.damage = damage;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        hp = maxHp;
         mRigid = this.GetComponent<Rigidbody2D>(); 
         mAnimator = GetComponentInChildren<Animator>();
         mGameManager = GameManager.Instance;
-        //mCameraController = mGameManager.getCamera().GetComponent<CamaraController>();
-        hpBar = mGameManager.getPlayerHp();//GameObject.Find("Canvas").GetComponentInChildren<HpBar>();
-        
+        hpBar = mGameManager.getPlayerHp();
+        mGameDataController = GameDataController.Instance;
+        InitPlayerData();
     }
 
-    // Update is called once per frame
+    private void InitPlayerData()
+    {
+        maxHp = mGameDataController.GetHp();
+        speed = mGameDataController.GetSpeed();
+        hp = maxHp;
+    }
+
     void Update()
     {
         Vector2 direction = new Vector2(0, 0);
@@ -112,7 +117,6 @@ public class BODController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         hit.collider.GetComponent<Enemy>().Damaged(damage);
-        //mCameraController.ShakeCamera();
     }
 
     private void Attack()
