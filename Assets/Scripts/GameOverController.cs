@@ -20,29 +20,17 @@ public class GameOverController: MonoBehaviour
         gameObject.SetActive(true);
         Time.timeScale = 0.1f;
         StartCoroutine(GameOvered());
-        print("tlqkf");
     }
 
     IEnumerator GameOvered()
     {
-        yield return new WaitForSeconds(1.0f);
-        print("tlqkf");
-        while (true)
-        {
-            print("restart");
-            if (Input.anyKey)
-            {
-                break;
-               
-            }
-        }
+        yield return new WaitForSecondsRealtime(1.0f);
+
+        yield return new WaitUntil(() => Input.anyKey);
+
         gameObject.SetActive(false);
         Time.timeScale = 1;
-        print("restart");
-        SceneManager.LoadScene("SceneByYS");
-
-
+        SceneManager.LoadScene("LobbyScene");
         //gameManager.getPlayer().GetComponent<BODController>().SpawnPlayer();
-
     }
 }

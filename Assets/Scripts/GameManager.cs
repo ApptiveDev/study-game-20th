@@ -34,6 +34,12 @@ public class GameManager : MonoBehaviour
 
     int killEnemyCount = 0;
 
+    public BossManager getBossManager()
+    {
+        return mBossManager;
+    }
+
+
     public void AddTokillEnemyCount(int num)
     {
         killEnemyCount += num;
