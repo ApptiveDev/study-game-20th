@@ -8,13 +8,14 @@ using UnityEngine.UI;
 public class Character : MonoBehaviour
 {    
     private float CharacterHealthPoint = 10f;
-    public float Point = 0;
+    public static float Point = 0;
     public float Speed = 1;
     public int Exp = 0;
     public int Level = 0;
     [SerializeField] private Image hpBarImage;
     [SerializeField] private Image expBarImage;
     [SerializeField] private Text LevelText;
+    [SerializeField] private Text PointText;
     [SerializeField] private GameObject heart;
     private float expPercent;
     RotatingWeapon RW;
@@ -28,6 +29,7 @@ public class Character : MonoBehaviour
     void Start() {
         animator = GetComponent<Animator>(); // 70 , 939
         Instantiate(heart,new Vector3(-30.85f,15.97f,0),Quaternion.identity);
+        PointText.transform.position = new Vector3(960,1028.9343f,0);
         LevelText.transform.position = new Vector3(70,939,0);
         hpBarImage.transform.position = new Vector3(298,1012,0);
         expBarImage.transform.position = new Vector3(298,939,0);
@@ -39,7 +41,7 @@ public class Character : MonoBehaviour
         RunAndflip();
         HpBar();
         ExpBar();
-        PrintLevelImage();
+        PrintImage();
         if (GameClear)
         {
             GameClearPanel.SetActive(true);
@@ -153,9 +155,10 @@ public class Character : MonoBehaviour
         }
     }
 
-    private void PrintLevelImage()
+    private void PrintImage()
     {
         LevelText.text = Level.ToString();
+        PointText.text = ("Point : " + Point).ToString();
     }
 
     private void CharaterDead()

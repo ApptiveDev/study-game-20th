@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RestartButton : MonoBehaviour
+public class ClearButton : MonoBehaviour
 {
-    
+    float PointPlus;
+    public static float TotalPoint;
     RotatingWeapon RW;
     Character CH;
     WeaponSpawner WS;
-    public void Restart()
+
+    public void Clear()
     {
-        Time.timeScale = 1f;
-        GameObject.Find("GameOver").SetActive(false);
+        PointPlus = Character.Point;
+        TotalPoint = Shop.TotalPoint + PointPlus;
+        PlayerPrefs.SetFloat("TotalPoint",TotalPoint);
         ClearComponent();
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("OutGameScene");
     }
 
     void ClearComponent()

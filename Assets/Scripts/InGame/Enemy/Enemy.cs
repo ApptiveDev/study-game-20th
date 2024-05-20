@@ -49,6 +49,7 @@ public class Enemy : MonoBehaviour
 
     private void EnemyDead()
     {
+        Character.Point++;
         Destroy(gameObject);
     }
 

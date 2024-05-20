@@ -43,6 +43,7 @@ public class StrongEnemy : MonoBehaviour
 
     private void EnemyDead()
     {
+        Character.Point += 2;
         Destroy(gameObject);
     }
 

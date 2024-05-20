@@ -30,6 +30,7 @@ public class Boss : MonoBehaviour
             {
                 CH.GameOver = true;
                 CH.GameClear = true;
+                Character.Point += 10;
                 Destroy(gameObject);
                 Time.timeScale = 0.33f;
             }

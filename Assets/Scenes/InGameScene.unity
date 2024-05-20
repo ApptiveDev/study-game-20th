@@ -1619,7 +1619,7 @@ GameObject:
   - component: {fileID: 839856136}
   - component: {fileID: 839856135}
   m_Layer: 5
-  m_Name: Point
+  m_Name: CharacterPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1641,7 +1641,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 488.93433}
+  m_AnchoredPosition: {x: -280.7, y: -789.61}
   m_SizeDelta: {x: 493.7192, y: 102.1263}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &839856135
@@ -1677,7 +1677,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &839856136
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3025,9 +3025,9 @@ GameObject:
   - component: {fileID: 1986468863}
   - component: {fileID: 1986468862}
   - component: {fileID: 1986468861}
-  - component: {fileID: 1986468860}
+  - component: {fileID: 1986468864}
   m_Layer: 5
-  m_Name: QuitButton
+  m_Name: ClearButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3053,18 +3053,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -95}
   m_SizeDelta: {x: 265.18, y: 88.898}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1986468860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1986468858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77efd35dd2024e54b8a3622b4b91d805, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1986468861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3109,9 +3097,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1986468860}
-        m_TargetAssemblyTypeName: QuitButton, Assembly-CSharp
-        m_MethodName: Quit
+      - m_Target: {fileID: 1986468864}
+        m_TargetAssemblyTypeName: ClearButton, Assembly-CSharp
+        m_MethodName: Clear
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3159,6 +3147,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1986468858}
   m_CullTransparentMesh: 1
+--- !u!114 &1986468864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986468858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4771d3bfd7f56bd44bc0b2259a25005c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2008471423
 GameObject:
   m_ObjectHideFlags: 0
@@ -3314,13 +3314,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdb7cd3acac5d9b4b95dcae2bba7a63c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Point: 0
   Speed: 1
   Exp: 0
   Level: 0
   hpBarImage: {fileID: 591281882}
   expBarImage: {fileID: 1578775518}
   LevelText: {fileID: 693850988}
+  PointText: {fileID: 839856135}
   heart: {fileID: 2497204956949134849, guid: b8623acf64cad52409461fdc6280ddff, type: 3}
   GameOver: 0
   GameClear: 0
