@@ -11,7 +11,8 @@ public class Shop : MonoBehaviour
 
     void Update()
     {
-        TotalPoint = ClearButton.TotalPoint;
-        PointText.text = TotalPoint.ToString();
+        // PlayerPrefs.SetFloat("TotalPoint", TotalPoint);
+        // TotalPoint = PlayerPrefs.GetFloat("TotalPoint");
+        PointText.text = ("Point : "+TotalPoint).ToString();
     }
 }

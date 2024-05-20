@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class Character : MonoBehaviour
-{    
+{   
     private float CharacterHealthPoint = 10f;
     public static float Point = 0;
     public float Speed = 1;

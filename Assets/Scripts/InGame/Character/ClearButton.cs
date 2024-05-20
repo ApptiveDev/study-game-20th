@@ -5,17 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class ClearButton : MonoBehaviour
 {
-    float PointPlus;
-    public static float TotalPoint;
     RotatingWeapon RW;
     Character CH;
     WeaponSpawner WS;
 
     public void Clear()
     {
-        PointPlus = Character.Point;
-        TotalPoint = Shop.TotalPoint + PointPlus;
-        PlayerPrefs.SetFloat("TotalPoint",TotalPoint);
+        Shop.TotalPoint += Character.Point;
         ClearComponent();
         Time.timeScale = 1f;
         SceneManager.LoadScene("OutGameScene");
