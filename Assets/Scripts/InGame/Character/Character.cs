@@ -8,16 +8,16 @@ using UnityEngine.UI;
 public class Character : MonoBehaviour
 {    
     private float CharacterHealthPoint = 10f;
+    public float Point = 0;
     public float Speed = 1;
     public int Exp = 0;
     public int Level = 0;
     [SerializeField] private Image hpBarImage;
     [SerializeField] private Image expBarImage;
+    [SerializeField] private Text LevelText;
     [SerializeField] private GameObject heart;
-    [SerializeField] private GameObject expCoin;
     private float expPercent;
     RotatingWeapon RW;
-    FireBomb FB;
     private Animator animator;
     public bool GameOver = false;
     public bool GameClear = false;
@@ -26,9 +26,9 @@ public class Character : MonoBehaviour
     
 
     void Start() {
-        animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>(); // 70 , 939
         Instantiate(heart,new Vector3(-30.85f,15.97f,0),Quaternion.identity);
-        Instantiate(expCoin,new Vector3(-30.85f,13.82f,0),Quaternion.identity);
+        LevelText.transform.position = new Vector3(70,939,0);
         hpBarImage.transform.position = new Vector3(298,1012,0);
         expBarImage.transform.position = new Vector3(298,939,0);
     }
@@ -39,6 +39,7 @@ public class Character : MonoBehaviour
         RunAndflip();
         HpBar();
         ExpBar();
+        PrintLevelImage();
         if (GameClear)
         {
             GameClearPanel.SetActive(true);
@@ -150,6 +151,11 @@ public class Character : MonoBehaviour
             }
             Exp = 0;
         }
+    }
+
+    private void PrintLevelImage()
+    {
+        LevelText.text = Level.ToString();
     }
 
     private void CharaterDead()

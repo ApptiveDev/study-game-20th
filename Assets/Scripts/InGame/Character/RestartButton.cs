@@ -3,32 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameOver : MonoBehaviour
+public class RestartButton : MonoBehaviour
 {
+    
     RotatingWeapon RW;
     Character CH;
     WeaponSpawner WS;
-    bool flag = true;
-
-    void Update()
+    public void Restart()
     {
-        if (flag)
-        {
-            GameOverUI();
-        }
-    }
-
-    void GameOverUI()
-    {
-        gameObject.SetActive(true);
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Time.timeScale = 1f;
-            gameObject.SetActive(false);
-            ClearComponent();
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
-            flag = false;
-        }
+        Time.timeScale = 1f;
+        GameObject.Find("GameOver").SetActive(false);
+        ClearComponent();
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
     }
 
     void ClearComponent()
@@ -40,6 +26,7 @@ public class GameOver : MonoBehaviour
         CH.Level = 0;
         CH.Exp = 0;
         CH.Speed = 1;
+        CH.Point = 0;
         FireBombSpawner.SpawnTime = 2f;
     }
 }

@@ -13,6 +13,8 @@ TagManager:
   - Image3
   - EnemyBall
   - Boss
+  - Shop
+  - Main
   layers:
   - Default
   - TransparentFX
