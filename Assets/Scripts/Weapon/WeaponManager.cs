@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -10,9 +11,13 @@ public class WeaponManager : MonoBehaviour
     Swords swords;
     BODController player;
     JarPoolController jar;
-    [SerializeField] GameObject Button1;
-    [SerializeField] GameObject Button2;
-    [SerializeField] GameObject Button3;
+    WeaponDataContainer weaponDataContainer;
+    [SerializeField] Button Button1;
+    [SerializeField] Button Button2;
+    [SerializeField] Button Button3;
+    [SerializeField] TMP_Text text1;
+    [SerializeField] TMP_Text text2;
+    [SerializeField] TMP_Text text3;
 
     [SerializeField] Sprite swordSprite;
     [SerializeField] Sprite glopSprite;
@@ -23,7 +28,12 @@ public class WeaponManager : MonoBehaviour
     List<int> weapons = new List<int>();
     List<int> selectedNumbers = new List<int>();
     List<Sprite> sprites = new List<Sprite>();
-    List<GameObject> Buttons = new List<GameObject>();
+    List<Button> Buttons = new List<Button>();
+    List<string> WeaponExplain = new List<string>();
+    List<TMP_Text> Texts = new List<TMP_Text>();
+
+    List<WeaponData> weaponDatas = new List<WeaponData>();
+    int numOfWeapons;
 
     // Start is called before the first frame update
     void Start()
@@ -33,34 +43,35 @@ public class WeaponManager : MonoBehaviour
         glop = gameManager.getPlayer().GetComponent<GlopPoolController>();
         jar = gameManager.getPlayer().GetComponent<JarPoolController>();
         swords = gameManager.getPlayer().GetComponent<Swords>();
-        initLists();
+        weaponDataContainer = GameDataController.Instance.GetWeaponData();
+        initDatas();
         gameObject.SetActive(false);
     }
 
-    void initLists()
+    void initDatas()
     {
-        for (int i =0; i<4; i++)
-        {
-            weapons.Add(i);
-        }
+        numOfWeapons = weaponDataContainer.GetWeaponNum();
 
-        sprites.Add(swordSprite);
-        sprites.Add(glopSprite);
-        sprites.Add(playerSprite);
-        sprites.Add(jarSprite);
+
+        for (int i =0; i < numOfWeapons; i++)
+        {
+            weaponDatas.Add(weaponDataContainer.GetWeaponData(i));
+            weapons.Add(i);
+            sprites.Add(weaponDatas[i].sprite);
+            WeaponExplain.Add(weaponDatas[i].upgradeExplainString);
+            print(i);
+        }
+        
 
         Buttons.Add(Button1);
         Buttons.Add(Button2);
         Buttons.Add(Button3);
+
+        Texts.Add(text1);
+        Texts.Add(text2);
+        Texts.Add(text3);
     }
-    
-    public void ShowWeaponSelectPage()
-    {
-        randomlySelectWeapon3();
-        numSelect += 1;
-        gameObject.SetActive(true);
-        Time.timeScale = 0f;
-    }
+
 
     void randomlySelectWeapon3()
     {
@@ -75,10 +86,19 @@ public class WeaponManager : MonoBehaviour
             }
         }
 
-        for (int i=0; i<3; i++)
+        for (int i = 0; i < 3; i++)
         {
-            Buttons[i].GetComponent<Button>().image.sprite = sprites[selectedNumbers[i]];
+            Buttons[i].image.sprite = sprites[selectedNumbers[i]];
+            Texts[i].text = WeaponExplain[selectedNumbers[i]];
         }
+    }
+
+    public void ShowWeaponSelectPage()
+    {
+        randomlySelectWeapon3();
+        numSelect += 1;
+        gameObject.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     

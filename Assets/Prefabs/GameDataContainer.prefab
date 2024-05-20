@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameDataContainer: {fileID: 11400000, guid: 976ad5c0665074116a5e3045e7c94c1a, type: 2}
+  weaponDataContainer: {fileID: 11400000, guid: 94f2954078dba4263aa63e33a9c3e762, type: 2}
+  enemyDataContainer: {fileID: 0}
   hp: 0
   speed: 0
   coin: 0
