@@ -7,6 +7,8 @@ public class GameDataController : MonoBehaviour
 {
 
     [SerializeField] private GameDataContainer gameDataContainer;
+    [SerializeField] private WeaponDataContainer weaponDataContainer;
+    [SerializeField] private EnemyDataContainer enemyDataContainer;
 
     private static GameDataController instance = null;
 
@@ -38,6 +40,11 @@ public class GameDataController : MonoBehaviour
         hp = 10;
         coin = 0;
         speed = 5;
+    }
+
+    public WeaponDataContainer GetWeaponData()
+    {
+        return weaponDataContainer;
     }
 
     public static GameDataController Instance
