@@ -1879,6 +1879,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameDataContainer
       objectReference: {fileID: 0}
+    - target: {fileID: 7720627069124774295, guid: dde2fca65cbc54d13930e24625bb74fb, type: 3}
+      propertyPath: hp
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7720627069124774295, guid: dde2fca65cbc54d13930e24625bb74fb, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

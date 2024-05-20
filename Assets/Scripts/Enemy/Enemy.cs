@@ -11,6 +11,21 @@ public class Enemy : MonoBehaviour
     protected ExpJamPoolController mExpJamPoolController;
     protected CoinPoolController mCoinPoolController;
     protected int attackNum = 0;
+    protected Transform playerTransform;
+    protected Rigidbody2D mRigid;
+
+    protected virtual void Start()
+    {
+        playerTransform = GameManager.Instance.getPlayer().GetComponent<Transform>();
+    }
+
+    protected virtual void Move()
+    {
+        float deltaX = playerTransform.position.x - transform.position.x;
+        float deltaY = playerTransform.position.y - transform.position.y;
+        float a = Mathf.Sqrt(Mathf.Pow(deltaX, 2) + Mathf.Pow(deltaY, 2));
+        mRigid.velocity = new Vector2(deltaX / a, deltaY / a);
+    }
 
 
     public void Damaged(int damage = 1)
@@ -28,7 +43,7 @@ public class Enemy : MonoBehaviour
             }
             catch
             {
-                print("isBoss");
+                Debug.Log("Enemy | Damaged : is Not use Object Pool");
             }
             
         }

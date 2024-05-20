@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class LongAttackEnemyController : Enemy
 {
-    Transform playerTransform;
-    Rigidbody2D mRigid;
     LongAttackEnemyWeaponPoolController mArrowPoolController;
     bool isAttacking = false;
-    // Start is called before the first frame update
+
+
     void Start()
     {
-        objectPoolController = GameManager.Instance.getGameManager().GetComponent<LongAttackEnemyPoolController>();
-        playerTransform = GameManager.Instance.getPlayer().GetComponent<Transform>();
+        objectPoolController = GameManager.Instance.getGameManagement().GetComponent<LongAttackEnemyPoolController>();
         mRigid = gameObject.GetComponent<Rigidbody2D>();
         mExpJamPoolController = GameManager.Instance.getExpJamPoolController();
-        mCoinPoolController = GameManager.Instance.getGameManager().GetComponent<CoinPoolController>();
-        mArrowPoolController = GameManager.Instance.getGameManager().GetComponent<LongAttackEnemyWeaponPoolController>();
+        mCoinPoolController = GameManager.Instance.getGameManagement().GetComponent<CoinPoolController>();
+        mArrowPoolController = GameManager.Instance.getGameManagement().GetComponent<LongAttackEnemyWeaponPoolController>();
     }
 
     IEnumerator Attack()
@@ -53,7 +51,6 @@ public class LongAttackEnemyController : Enemy
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         Move();

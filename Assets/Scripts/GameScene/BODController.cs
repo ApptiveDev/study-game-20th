@@ -13,7 +13,7 @@ public class BODController : MonoBehaviour
     private GameManager mGameManager;
     private HpBar hpBar;
     int damage = 1;
-    private GameDataController mGameDataController;
+    private GameDataManager mGameDataManager;
 
 
     public int getHp()
@@ -37,14 +37,14 @@ public class BODController : MonoBehaviour
         mAnimator = GetComponentInChildren<Animator>();
         mGameManager = GameManager.Instance;
         hpBar = mGameManager.getPlayerHp();
-        mGameDataController = GameDataController.Instance;
+        mGameDataManager = GameDataManager.Instance;
         InitPlayerData();
     }
 
     private void InitPlayerData()
     {
-        maxHp = mGameDataController.GetHp();
-        speed = mGameDataController.GetSpeed();
+        maxHp = mGameDataManager.GetHp();
+        speed = mGameDataManager.GetSpeed();
         hp = maxHp;
     }
 

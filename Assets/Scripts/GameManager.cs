@@ -6,18 +6,11 @@ public class GameManager : MonoBehaviour
 {
 
     private static GameManager instance;
-    //private GameManager() { }
 
     public static GameManager Instance
     {
         get
         {
-
-            //if (instance == null)
-            //{
-                //print("Create instance of GameManager");
-                //instance = new GameManager();
-            //}
             return instance ;
         }
     }
@@ -27,7 +20,7 @@ public class GameManager : MonoBehaviour
     GameObject tmpGameOver;
     GameObject player;
     List<GameObject> enemyList = new List<GameObject>();
-    GameObject mGameManager;
+    GameObject gameManagement;
     GameObject camera;
     ExpJamPoolController mExpJamPoolController;
     BossManager mBossManager;
@@ -56,9 +49,9 @@ public class GameManager : MonoBehaviour
         return enemyList;
     }
 
-    public GameObject getGameManager()
+    public GameObject getGameManagement()
     {
-        return mGameManager;
+        return gameManagement;
     }
 
     public GameObject getPlayer()
@@ -101,20 +94,12 @@ public class GameManager : MonoBehaviour
         instance = this;
         weaponManager = GameObject.Find("WeaponSelect").GetComponent<WeaponManager>();
         camera = GameObject.Find("Main Camera");
-        mGameManager = GameObject.Find("GameManagement");
+        gameManagement = GameObject.Find("GameManagement");
         playerHp = GameObject.Find("PlayerHp").GetComponent<HpBar>();
         tmpGameOver = GameObject.Find("GameOver");
         player = GameObject.Find("BOD");
         playerExp = GameObject.Find("PlayerExp").GetComponent<ExpBar>();
-        mExpJamPoolController = mGameManager.GetComponent<ExpJamPoolController>();
-        mBossManager = mGameManager.GetComponent<BossManager>();
+        mExpJamPoolController = gameManagement.GetComponent<ExpJamPoolController>();
+        mBossManager = gameManagement.GetComponent<BossManager>();
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-
-    }
-
 }

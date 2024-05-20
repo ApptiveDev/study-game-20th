@@ -28,8 +28,11 @@ public class ObjectPoolController : MonoBehaviour
     {
         if (ObjectPool.Count > 0)
         {
-            float y =  Random.RandomRange(-5, 5) +position.y;
-            float x = Random.RandomRange(-7, 7) + position.x ; 
+            //float y =  Random.RandomRange(-5, 5) +position.y;
+            //float x = Random.RandomRange(-7, 7) + position.x ;
+            float seta = Random.RandomRange(0, 2 * Mathf.PI);
+            float x = Mathf.Sin(seta) * 5 + position.x;
+            float y = Mathf.Cos(seta) * 5 + position.y;
             GameObject bady = ObjectPool[0];
             bady.SetActive(true);
             ObjectPool.RemoveAt(0);

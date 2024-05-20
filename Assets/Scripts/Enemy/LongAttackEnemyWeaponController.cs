@@ -10,7 +10,7 @@ public class LongAttackEnemyWeaponController : MonoBehaviour
     private void Start()
     {
         deltaTransform = new Vector3();
-        mPoolController = GameManager.Instance.getGameManager().GetComponent<LongAttackEnemyWeaponPoolController>();
+        mPoolController = GameManager.Instance.getGameManagement().GetComponent<LongAttackEnemyWeaponPoolController>();
     }
 
     IEnumerator Moving(Vector3 deltaTransform)
