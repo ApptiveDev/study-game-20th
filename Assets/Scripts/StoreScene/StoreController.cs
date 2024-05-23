@@ -7,12 +7,12 @@ using TMPro;
 
 public class StoreController : MonoBehaviour
 {
-    GameDataController mGameDataController;
+    GameDataManager mGameDataManager;
     TMP_Text coinDisplayerText;
 
     private void Start()
     {
-        mGameDataController = GameDataController.Instance;
+        mGameDataManager = GameDataManager.Instance;
         coinDisplayerText = GameObject.Find("CoinDisplayer").GetComponent<TMP_Text>() ;
         UpdateCoinDisplayer();
     }
@@ -24,22 +24,28 @@ public class StoreController : MonoBehaviour
 
     private void UpdateCoinDisplayer()
     {
-        coinDisplayerText.SetText("Coin : " + mGameDataController.GetCoin());
+        coinDisplayerText.SetText("Coin : " + mGameDataManager.GetCoin());
     }
 
 
     public void UpgradeHp()
     {
-        mGameDataController.SetCoin(mGameDataController.GetCoin() - 10);
-        mGameDataController.SetHp(mGameDataController.GetHp() + 1);
-        UpdateCoinDisplayer();
+        if (mGameDataManager.GetCoin() - 10 >=0)
+        {
+            mGameDataManager.SetCoin(mGameDataManager.GetCoin() - 10);
+            mGameDataManager.SetHp(mGameDataManager.GetHp() + 1);
+            UpdateCoinDisplayer();
+        }
     }
 
     public void UpgradeSpeed()
     {
-        mGameDataController.SetSpeed(mGameDataController.GetSpeed() - 10);
-        mGameDataController.SetHp(mGameDataController.GetHp() + 1);
-        UpdateCoinDisplayer();
+        if (mGameDataManager.GetCoin() - 10 >= 0)
+        {
+            mGameDataManager.SetCoin(mGameDataManager.GetCoin() - 10);
+            mGameDataManager.SetSpeed(mGameDataManager.GetSpeed() + 1);
+            UpdateCoinDisplayer();
+        }
+        
     }
-
 }

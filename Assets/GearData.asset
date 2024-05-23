@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4cd6160577e547c981c5d3a51dcbbe8, type: 3}
+  m_Name: GearData
+  m_EditorClassIdentifier: 
+  IronArmor:
+    id: 0
+    gearTypeId: 1
+    prefab: {fileID: 3561413059390414572, guid: 1da3f648447c543808b57b27cab64fae, type: 3}
+  IronBoot:
+    id: 1
+    gearTypeId: 2
+    prefab: {fileID: 3570599083725365641, guid: 2f73e98f6a4bc4cef80974ed55e1b34a, type: 3}
+  Helm:
+    id: 2
+    gearTypeId: 0
+    prefab: {fileID: 9043026857126268082, guid: 10c0d2813b2894f648469608e99fbbd0, type: 3}
+  LeatherArmor:
+    id: 3
+    gearTypeId: 1
+    prefab: {fileID: 4905903254649786957, guid: fbef40cd162b94a578cd0096db458777, type: 3}
+  LeatherBoot:
+    id: 4
+    gearTypeId: 2
+    prefab: {fileID: 9212942149607959482, guid: bedcb1b91dc574e7cac32cfd37365043, type: 3}
+  LeatherHelmet:
+    id: 5
+    gearTypeId: 0
+    prefab: {fileID: 2084910802141560369, guid: 4f2cd1155b1f54cb18b8b605cfd5233f, type: 3}
+  WizardHat:
+    id: 6
+    gearTypeId: 0
+    prefab: {fileID: 1767906259120150785, guid: 9f8653c968e424061b04c220b801f5ef, type: 3}
+  WoodenArmor:
+    id: 7
+    gearTypeId: 1
+    prefab: {fileID: 4491009802035863093, guid: f8e0bee3153364a839b578f1b925e0eb, type: 3}

@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class GateKeeperController : Enemy
 {
-    Transform playerTransform;
-    Rigidbody2D mRigid;
     Animator animator;
     Vector2 MoveDirection;
     bool isDashing = false;
     BossManager bossManager;
+    
     // Start is called before the first frame update
     void Start()
     {
         bossManager = GameManager.Instance.getBossManager();
-        playerTransform = GameManager.Instance.getPlayer().GetComponent<Transform>();
         mRigid = gameObject.GetComponent<Rigidbody2D>();
         mExpJamPoolController = GameManager.Instance.getExpJamPoolController();
         animator = gameObject.GetComponent<Animator>();

@@ -43,7 +43,7 @@ public class WeaponManager : MonoBehaviour
         glop = gameManager.getPlayer().GetComponent<GlopPoolController>();
         jar = gameManager.getPlayer().GetComponent<JarPoolController>();
         swords = gameManager.getPlayer().GetComponent<Swords>();
-        weaponDataContainer = GameDataController.Instance.GetWeaponData();
+        weaponDataContainer = GameDataManager.Instance.GetWeaponData();
         initDatas();
         gameObject.SetActive(false);
     }
@@ -59,7 +59,6 @@ public class WeaponManager : MonoBehaviour
             weapons.Add(i);
             sprites.Add(weaponDatas[i].sprite);
             WeaponExplain.Add(weaponDatas[i].upgradeExplainString);
-            print(i);
         }
         
 

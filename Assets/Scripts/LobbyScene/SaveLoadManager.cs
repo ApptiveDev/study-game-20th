@@ -9,11 +9,11 @@ public class SaveLoadManager : MonoBehaviour
     int maxHp = 10;
     float speed = 5;
 
-    GameDataController gameDataController;
+    GameDataManager gameDataController;
 
     private void Start()
     {
-        gameDataController = GameDataController.Instance;
+        gameDataController = GameDataManager.Instance;
     }
 
     public void Save()

@@ -20,7 +20,7 @@ public class HpBar : MonoBehaviour
 
     void InitHpBar()
     {
-        slider.maxValue = GameDataController.Instance.GetHp();
+        slider.maxValue = GameDataManager.Instance.GetHp();
         slider.value = slider.maxValue;
     }
 

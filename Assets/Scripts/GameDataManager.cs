@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class GameDataController : MonoBehaviour
+public class GameDataManager : MonoBehaviour
 {
 
     [SerializeField] private GameDataContainer gameDataContainer;
     [SerializeField] private WeaponDataContainer weaponDataContainer;
     [SerializeField] private EnemyDataContainer enemyDataContainer;
 
-    private static GameDataController instance = null;
+    private static GameDataManager instance = null;
 
-    [SerializeField] private int hp;
-    [SerializeField] private float speed;
-    [SerializeField] private int coin;
+    [SerializeField] private int hp = 10;
+    [SerializeField] private float speed = 5;
+    [SerializeField] private int coin = 0;
    
 
     void Awake()
@@ -47,7 +47,7 @@ public class GameDataController : MonoBehaviour
         return weaponDataContainer;
     }
 
-    public static GameDataController Instance
+    public static GameDataManager Instance
     {
         get
         {

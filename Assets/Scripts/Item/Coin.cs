@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class Coin : Item
 {
-    GameDataController gameDataController;
+    GameDataManager gameDataManager;
     int coinValue = 1;
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        gameDataController = GameDataController.Instance;
-        itemPoolController = gameManager.getGameManager().GetComponent<CoinPoolController>();
+        gameDataManager = GameDataManager.Instance;
+        itemPoolController = gameManager.getGameManagement().GetComponent<CoinPoolController>();
     }
 
     protected override void Update()
@@ -29,6 +29,6 @@ public class Coin : Item
 
     void AddExp()
     {
-        gameDataController.SetCoin(gameDataController.GetCoin() + coinValue);
+        gameDataManager.SetCoin(gameDataManager.GetCoin() + coinValue);
     }
 }

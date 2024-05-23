@@ -10,7 +10,7 @@ public class LongAttackEnemyWeaponController : MonoBehaviour
     private void Start()
     {
         deltaTransform = new Vector3();
-        mPoolController = GameManager.Instance.getGameManager().GetComponent<LongAttackEnemyWeaponPoolController>();
+        mPoolController = GameManager.Instance.getGameManagement().GetComponent<LongAttackEnemyWeaponPoolController>();
     }
 
     IEnumerator Moving(Vector3 deltaTransform)
@@ -18,7 +18,6 @@ public class LongAttackEnemyWeaponController : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(0.01f);
-            //print(deltaTransform);
             transform.position += deltaTransform * 0.01f * arrowSpeed;
         }
     }
@@ -34,7 +33,6 @@ public class LongAttackEnemyWeaponController : MonoBehaviour
     { 
         deltaTransform = targetPosition - transform.position;
         deltaTransform.Normalize();
-        print(deltaTransform);
         StartCoroutine(Moving(deltaTransform));
         StartCoroutine(AutoBreak());
     }

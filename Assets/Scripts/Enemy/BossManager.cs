@@ -16,7 +16,7 @@ public class BossManager : MonoBehaviour
     void Start()
     {
         gameManager = GameManager.Instance;
-        gameManagement = gameManager.getGameManager();
+        gameManagement = gameManager.getGameManagement();
         
     }
 
