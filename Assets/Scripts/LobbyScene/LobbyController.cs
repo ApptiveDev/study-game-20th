@@ -16,6 +16,11 @@ public class LobbyController : MonoBehaviour
         SceneManager.LoadScene("StoreScene");
     }
 
+    public void LoadGearScene()
+    {
+        SceneManager.LoadScene("GearScene");
+    }
+
     public void ExitGame()
     {
         Application.Quit();

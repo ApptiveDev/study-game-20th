@@ -9,18 +9,49 @@ public class SaveLoadManager : MonoBehaviour
     int maxHp = 10;
     float speed = 5;
 
-    GameDataManager gameDataController;
+    GameDataManager gameDataManager;
+    List<int> playerGears;
 
     private void Start()
     {
-        gameDataController = GameDataManager.Instance;
+        gameDataManager = GameDataManager.Instance;
+    }
+
+    private void SavePlayerGearDatas()
+    {
+        playerGears = gameDataManager.GetPlayersGears();
+        for (int i = 0; i<17; i++)
+        {
+            PlayerPrefs.SetInt("Gear" + i, playerGears[i]);
+        }
+    }
+
+    private void LoadPlayerGearDatas()
+    {
+        if (playerGears == null)
+        {
+            playerGears = new List<int>();
+            for (int i = 0; i < 17; i++)
+            {
+                playerGears.Add(-1);
+            }
+        }
+
+        for (int i = 0; i < 17; i++)
+        {
+            playerGears[i] = PlayerPrefs.GetInt("Gear" + i);
+        }
+        gameDataManager.SetPlayerGearData(playerGears);
     }
 
     public void Save()
     {
-        coin = gameDataController.GetCoin();
-        maxHp = gameDataController.GetHp();
-        speed = gameDataController.GetSpeed();
+
+        SavePlayerGearDatas();
+
+        coin = gameDataManager.GetCoin();
+        maxHp = gameDataManager.GetHp();
+        speed = gameDataManager.GetSpeed();
 
         PlayerPrefs.SetInt("coin", coin);
         PlayerPrefs.SetInt("maxHp", maxHp);
@@ -29,12 +60,14 @@ public class SaveLoadManager : MonoBehaviour
 
     public void Load()
     {
+        LoadPlayerGearDatas();
+
         coin = PlayerPrefs.GetInt("coin");
         maxHp = PlayerPrefs.GetInt("maxHp");
         speed = PlayerPrefs.GetFloat("speed");
 
-        gameDataController.SetCoin(coin);
-        gameDataController.SetHp(maxHp);
-        gameDataController.SetSpeed(speed);
+        gameDataManager.SetCoin(coin);
+        gameDataManager.SetHp(maxHp);
+        gameDataManager.SetSpeed(speed);
     }
 }
