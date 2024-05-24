@@ -9,13 +9,18 @@ public class GameDataManager : MonoBehaviour
     [SerializeField] private GameDataContainer gameDataContainer;
     [SerializeField] private WeaponDataContainer weaponDataContainer;
     [SerializeField] private EnemyDataContainer enemyDataContainer;
+    [SerializeField] private GearDataContainer gearDataContainer;
+
+    private GearSceneManager gearSceneManager;
 
     private static GameDataManager instance = null;
+
+
 
     [SerializeField] private int hp = 10;
     [SerializeField] private float speed = 5;
     [SerializeField] private int coin = 0;
-   
+    [SerializeField] private List<int> playersGears = new List<int>();
 
     void Awake()
     {
@@ -33,6 +38,16 @@ public class GameDataManager : MonoBehaviour
     void Start()
     {
         InitData();
+        if (gearSceneManager == null)
+        {
+            gearSceneManager = GearSceneManager.Instance;
+        }
+        
+    }
+
+    public List<int> GetPlayersGears()
+    {
+        return playersGears;
     }
 
     private void InitData()
@@ -40,6 +55,22 @@ public class GameDataManager : MonoBehaviour
         hp = 10;
         coin = 0;
         speed = 5;
+
+        for (int i = 0; i < 17; i++)
+        {
+            playersGears.Add(-1);
+        }
+
+    }
+
+    public void SetPlayerGearData(List<int> playersGearData)
+    {
+        playersGears = playersGearData;
+    }
+
+    public GearDataContainer GetGearData()
+    {
+        return gearDataContainer;
     }
 
     public WeaponDataContainer GetWeaponData()

@@ -47,6 +47,8 @@ MonoBehaviour:
   gameDataContainer: {fileID: 11400000, guid: 976ad5c0665074116a5e3045e7c94c1a, type: 2}
   weaponDataContainer: {fileID: 11400000, guid: 94f2954078dba4263aa63e33a9c3e762, type: 2}
   enemyDataContainer: {fileID: 0}
+  gearDataContainer: {fileID: 11400000, guid: 985f32fee6a0d42c2978d7a6bece92a3, type: 2}
   hp: 0
   speed: 0
   coin: 0
+  playersGears: 

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 
 [Serializable]
@@ -11,6 +11,7 @@ public class GearSpace
     [SerializeField] public int id;
     [SerializeField] public Vector3 position;
     [SerializeField] public bool isContain;
+    [SerializeField] public int gearId;
 
     public GearSpace(int pid, Vector3 pposition, bool pisContain)
     {
@@ -21,11 +22,13 @@ public class GearSpace
 
     public void GearOut()
     {
+        gearId = -1;
         isContain = false;
     }
 
-    public void GearIn()
+    public void GearIn(int pGearId)
     {
+        gearId = pGearId;
         isContain = true;
     }
 
@@ -57,6 +60,33 @@ public class GearSceneManager : MonoBehaviour
 
     List<GameObject> gearInventorys;
     [SerializeField] List<GearSpace> gearSpaces;
+    List<int> playersGears;
+    GameDataManager gameDataManager;
+    GearDataContainer gearDataContainer;
+    private void Start()
+    {
+        gameDataManager = GameDataManager.Instance;
+        gearDataContainer = gameDataManager.GetGearData();
+        InitGears();
+    }
+
+    void InitGears()
+    {
+        playersGears = gameDataManager.GetPlayersGears();
+
+        for (int i = 0;  i<17; i++)
+        {
+            if (playersGears[i] != -1)
+            {
+                GearData gearData = gearDataContainer.GetGearData(playersGears[i]);
+                
+                GameObject temp = Instantiate(gearData.prefab, gearSpaces[i].position + new Vector3(0, 0, -90), Quaternion.identity);
+                temp.GetComponent<GearItem>().SetGearData(gearData.id, gearData.gearTypeId, i);
+                gearSpaces[i].GearIn(gearData.id);
+
+            }
+        }
+    }
 
 
     void InitLists()
@@ -82,13 +112,29 @@ public class GearSceneManager : MonoBehaviour
         }
     }
 
-    public GearSpace GetMostCloseSpace(Vector3 position)
+    public GearSpace GetMostCloseSpace(Vector3 position, int gearId, int gearTypeId)
     {
         int closeSpaceIndex = -1;
         float leastDistence = float.MaxValue;
 
-        for (int i = 0; i < gearSpaces.Count; i++)
+
+        for (int i = 0; i < 3; i++)
         {
+            if (i == gearTypeId)
+            {
+                float temp = Mathf.Pow(position.x - gearSpaces[i].position.x, 2) + Mathf.Pow(position.y - gearSpaces[i].position.y, 2);
+                if (temp < leastDistence && !gearSpaces[i].isContain)
+                {
+                    leastDistence = temp;
+                    closeSpaceIndex = i;
+                }
+            }  
+        }
+
+
+        for (int i = 3; i < gearSpaces.Count; i++)
+        {
+
             
             float temp = Mathf.Pow(position.x - gearSpaces[i].position.x, 2) + Mathf.Pow(position.y - gearSpaces[i].position.y, 2);
             if (temp < leastDistence && !gearSpaces[i].isContain)
@@ -98,7 +144,7 @@ public class GearSceneManager : MonoBehaviour
             }
         }
 
-        gearSpaces[closeSpaceIndex].GearIn();
+        gearSpaces[closeSpaceIndex].GearIn(gearId);
 
         return gearSpaces[closeSpaceIndex];
     }
@@ -108,4 +154,27 @@ public class GearSceneManager : MonoBehaviour
         gearSpaces[spaceId].GearOut();
     }
 
+    private void UpdatePlayerGearDatas()
+    {
+        for (int i = 0; i < 17; i++)
+        {
+            if (gearSpaces[i].isContain)
+            {
+                playersGears[i] = gearSpaces[i].gearId;
+            } else
+            {
+                playersGears[i] = -1;
+            }
+            
+        }
+        
+    }
+
+
+    public void LoadLobbyScene()
+    {
+        UpdatePlayerGearDatas();
+        gameDataManager.SetPlayerGearData(playersGears);
+        SceneManager.LoadScene("LobbyScene");
+    }
 }
