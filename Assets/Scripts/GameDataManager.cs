@@ -45,7 +45,7 @@ public class GameDataManager : MonoBehaviour
         
     }
 
-    public List<int> GetPlayersGears()
+    public List<int> GetPlayerGearData()
     {
         return playersGears;
     }
