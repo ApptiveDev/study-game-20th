@@ -27,6 +27,32 @@ public class StoreController : MonoBehaviour
         coinDisplayerText.SetText("Coin : " + mGameDataManager.GetCoin());
     }
 
+    public void RandomGetGear()
+    {
+        if (mGameDataManager.GetCoin() - 10 >= 0)
+        {
+            List<int> playerGearData = mGameDataManager.GetPlayerGearData();
+
+            int gearId = Random.Range(0, mGameDataManager.GetGearData().GetGearNum());
+            bool isFull = true;
+
+            for (int i = 3; i < 17; i++)
+            {
+                if (playerGearData[i] == -1)
+                {
+                    isFull = false;
+                    playerGearData[i] = gearId;
+                    break;
+                }
+            }
+
+            if (!isFull)
+            {
+                mGameDataManager.SetCoin(mGameDataManager.GetCoin() - 10);
+                mGameDataManager.SetPlayerGearData(playerGearData);
+            }
+        }
+    }
 
     public void UpgradeHp()
     {
