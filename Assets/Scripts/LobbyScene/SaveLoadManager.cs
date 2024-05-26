@@ -19,7 +19,7 @@ public class SaveLoadManager : MonoBehaviour
 
     private void SavePlayerGearDatas()
     {
-        playerGears = gameDataManager.GetPlayersGears();
+        playerGears = gameDataManager.GetPlayerGearData();
         for (int i = 0; i<17; i++)
         {
             PlayerPrefs.SetInt("Gear" + i, playerGears[i]);

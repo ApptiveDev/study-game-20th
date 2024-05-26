@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using TMPro;
 
 [Serializable]
 public class GearSpace
@@ -36,6 +36,9 @@ public class GearSpace
 
 public class GearSceneManager : MonoBehaviour
 {
+
+    [SerializeField] GameObject gearExplainPage;
+
     public static GearSceneManager instance = null;
     public static GearSceneManager Instance
     {
@@ -63,30 +66,46 @@ public class GearSceneManager : MonoBehaviour
     List<int> playersGears;
     GameDataManager gameDataManager;
     GearDataContainer gearDataContainer;
+
+    public void SetGearExplainPage(bool active, string text = " ", Vector3 position = default(Vector3))
+    {
+        Vector3 temp = new Vector3(2, 0, 5) + position;
+
+        gearExplainPage.SetActive(active);
+        if (active)
+        {
+            gearExplainPage.transform.position = temp;
+            gearExplainPage.GetComponentInChildren<TMP_Text>().SetText(text);
+        }
+    }
+
+
     private void Start()
     {
         gameDataManager = GameDataManager.Instance;
         gearDataContainer = gameDataManager.GetGearData();
         InitGears();
+        SetGearExplainPage(false);
     }
+
 
     void InitGears()
     {
-        playersGears = gameDataManager.GetPlayersGears();
+        playersGears = gameDataManager.GetPlayerGearData();
 
         for (int i = 0;  i<17; i++)
         {
             if (playersGears[i] != -1)
             {
                 GearData gearData = gearDataContainer.GetGearData(playersGears[i]);
-                
                 GameObject temp = Instantiate(gearData.prefab, gearSpaces[i].position + new Vector3(0, 0, -90), Quaternion.identity);
-                temp.GetComponent<GearItem>().SetGearData(gearData.id, gearData.gearTypeId, i);
+                temp.GetComponent<GearItem>().SetGearData(gearData.id, gearData.gearTypeId, i, gearData.gearExplain);
                 gearSpaces[i].GearIn(gearData.id);
 
             }
         }
     }
+
 
 
     void InitLists()
@@ -111,6 +130,7 @@ public class GearSceneManager : MonoBehaviour
             i++;
         }
     }
+
 
     public GearSpace GetMostCloseSpace(Vector3 position, int gearId, int gearTypeId)
     {
@@ -149,10 +169,12 @@ public class GearSceneManager : MonoBehaviour
         return gearSpaces[closeSpaceIndex];
     }
 
+
     public void GearOut(int spaceId)
     {
         gearSpaces[spaceId].GearOut();
     }
+
 
     private void UpdatePlayerGearDatas()
     {

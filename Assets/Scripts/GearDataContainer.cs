@@ -9,6 +9,7 @@ public struct GearData
     [SerializeField] public int id;
     [SerializeField] public int gearTypeId; // 0 : head // 1 : body // 2 : foot
     [SerializeField] public GameObject prefab;
+    [SerializeField] public string gearExplain;
 }
 
 
