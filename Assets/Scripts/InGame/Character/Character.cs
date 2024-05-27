@@ -9,9 +9,12 @@ public class Character : MonoBehaviour
 {   
     private float CharacterHealthPoint = 10f;
     public static float Point = 0;
-    public float Speed = 1;
+    public static int SwordDamage = 1;
+    public static int FireDamage = 1;
+    public static float Speed = 1;
     public int Exp = 0;
     public int Level = 0;
+    
     [SerializeField] private Image hpBarImage;
     [SerializeField] private Image expBarImage;
     [SerializeField] private Text LevelText;

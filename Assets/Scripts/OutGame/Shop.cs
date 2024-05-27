@@ -13,6 +13,6 @@ public class Shop : MonoBehaviour
     {
         // PlayerPrefs.SetFloat("TotalPoint", TotalPoint);
         // TotalPoint = PlayerPrefs.GetFloat("TotalPoint");
-        PointText.text = ("Point : "+TotalPoint).ToString();
+        PointText.text = ("P : "+TotalPoint).ToString();
     }
 }

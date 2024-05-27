@@ -23,10 +23,23 @@ public class Boss : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         CH = GameObject.Find("Character").GetComponent<Character>();
-        if (other.tag == "Weapon")
+        if (other.tag == "Weapon_Sword")
         {
-            BossHealthPoint--;
-            if (BossHealthPoint < 1) 
+            BossHealthPoint -= Character.SwordDamage;
+            if (BossHealthPoint < 1)
+            {
+                CH.GameOver = true;
+                CH.GameClear = true;
+                Character.Point += 10;
+                Destroy(gameObject);
+                Time.timeScale = 0.33f;
+            }
+        }
+
+        else if (other.tag == "Weapon_Fire")
+        {
+            BossHealthPoint -= Character.FireDamage;
+            if (BossHealthPoint < 1)
             {
                 CH.GameOver = true;
                 CH.GameClear = true;

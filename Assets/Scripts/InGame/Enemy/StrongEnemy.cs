@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StrongEnemy : MonoBehaviour
 {
-    private float EnemyHealthPoint = 2f;
+    private float EnemyHealthPoint = 3f;
     public GameObject ExpCoin;
     GameObject player;
     [SerializeField] private GameObject StrongEnemyBall;
@@ -30,9 +30,19 @@ public class StrongEnemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Weapon")
+        if (other.tag == "Weapon_Sword")
         {
-            EnemyHealthPoint--;
+            EnemyHealthPoint -= Character.SwordDamage;
+            if (EnemyHealthPoint < 1) 
+            {
+                LeaveExp();
+                EnemyDead();
+            }
+        }
+
+        else if (other.tag == "Weapon_Fire")
+        {
+            EnemyHealthPoint -= Character.FireDamage;
             if (EnemyHealthPoint < 1) 
             {
                 LeaveExp();

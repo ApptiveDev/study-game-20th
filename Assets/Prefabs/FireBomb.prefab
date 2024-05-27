@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7396654860346016394}
   m_Layer: 0
   m_Name: FireBomb
-  m_TagString: Weapon
+  m_TagString: Weapon_Fire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

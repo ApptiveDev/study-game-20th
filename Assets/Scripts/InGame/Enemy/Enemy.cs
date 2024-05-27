@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 {
     private Transform player;
     float flag = 0;
-    private float EnemyHealthPoint = 2f;
+    private float EnemyHealthPoint = 1f;
     public GameObject ExpCoin;
     
     void Update() 
@@ -36,9 +36,19 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Weapon")
+        if (other.tag == "Weapon_Sword")
         {
-            EnemyHealthPoint--;
+            EnemyHealthPoint -= Character.SwordDamage;
+            if (EnemyHealthPoint < 1) 
+            {
+                LeaveExp();
+                EnemyDead();
+            }
+        }
+
+        else if (other.tag == "Weapon_Fire")
+        {
+            EnemyHealthPoint -= Character.FireDamage;
             if (EnemyHealthPoint < 1) 
             {
                 LeaveExp();

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,7 +26,7 @@ public class ClearButton : MonoBehaviour
         RW.Level = 0;
         CH.Level = 0;
         CH.Exp = 0;
-        CH.Speed = 1;
+        Character.Speed = 1;
         Character.Point = 0;
         FireBombSpawner.SpawnTime = 2f;
     }
