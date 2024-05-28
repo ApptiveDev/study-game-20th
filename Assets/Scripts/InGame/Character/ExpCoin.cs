@@ -5,6 +5,13 @@ using UnityEngine;
 public class ExpCoin : MonoBehaviour
 {
     Character CH;
+    private Transform Player;
+
+    private void Update()
+    {
+        CoinMoveToPlayer();
+    }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -16,6 +23,17 @@ public class ExpCoin : MonoBehaviour
             CH.Exp++;
             FindObjectOfType<Character>().CheckLevelUp();
             Destroy(gameObject);
+        }
+    }
+
+    private void CoinMoveToPlayer()
+    {
+        Player = GameObject.Find("Character").GetComponent<Character>().transform;
+        float distanceVector = Vector3.Distance(transform.position, Player.position);
+
+        if (distanceVector < 4f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, Player.position, 25f * Time.deltaTime);
         }
     }
 }
