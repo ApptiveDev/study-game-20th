@@ -37,16 +37,23 @@ public class SaveLoadManager : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < 17; i++)
+        playerGears[0] = PlayerPrefs.GetInt("Gear1");
+        if (playerGears[0] == 0)
         {
-            playerGears[i] = PlayerPrefs.GetInt("Gear" + i);
+            playerGears[0] = -1;
+        } else
+        {
+            for (int i = 1; i < 17; i++)
+            {
+                playerGears[i] = PlayerPrefs.GetInt("Gear" + i);
+            }
         }
+        
         gameDataManager.SetPlayerGearData(playerGears);
     }
 
     public void Save()
     {
-
         SavePlayerGearDatas();
 
         coin = gameDataManager.GetCoin();

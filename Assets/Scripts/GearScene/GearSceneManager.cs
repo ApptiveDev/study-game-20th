@@ -12,6 +12,7 @@ public class GearSpace
     [SerializeField] public Vector3 position;
     [SerializeField] public bool isContain;
     [SerializeField] public int gearId;
+    
 
     public GearSpace(int pid, Vector3 pposition, bool pisContain)
     {
@@ -36,7 +37,6 @@ public class GearSpace
 
 public class GearSceneManager : MonoBehaviour
 {
-
     [SerializeField] GameObject gearExplainPage;
 
     public static GearSceneManager instance = null;
@@ -66,6 +66,7 @@ public class GearSceneManager : MonoBehaviour
     List<int> playersGears;
     GameDataManager gameDataManager;
     GearDataContainer gearDataContainer;
+    GearAbility gearAbility = new GearAbility();
 
     public void SetGearExplainPage(bool active, string text = " ", Vector3 position = default(Vector3))
     {
@@ -101,7 +102,6 @@ public class GearSceneManager : MonoBehaviour
                 GameObject temp = Instantiate(gearData.prefab, gearSpaces[i].position + new Vector3(0, 0, -90), Quaternion.identity);
                 temp.GetComponent<GearItem>().SetGearData(gearData.id, gearData.gearTypeId, i, gearData.gearExplain);
                 gearSpaces[i].GearIn(gearData.id);
-
             }
         }
     }
@@ -192,10 +192,27 @@ public class GearSceneManager : MonoBehaviour
         
     }
 
+    public GearAbility GetGearAbility()
+    {
+        gearAbility.additionalHp = 0;
+        gearAbility.speed = 0;
+        gearAbility.damageResist = 0;
+        gearAbility.healPer5sec = 0;
+        UpdatePlayerGearDatas();
+        for (int i = 0; i<3; i++)
+        {
+            GearData gearData = gearDataContainer.GetGearData(playersGears[i]);
+            gearAbility.healPer5sec += gearData.healPer5sec;
+            gearAbility.speed += gearData.speed;
+            gearAbility.damageResist += gearData.damageResist;
+            gearAbility.additionalHp += gearData.additionalHp;
+        }
+        return gearAbility;
 
+    }
     public void LoadLobbyScene()
     {
-        UpdatePlayerGearDatas();
+        gameDataManager.SetGearAbility(GetGearAbility());
         gameDataManager.SetPlayerGearData(playersGears);
         SceneManager.LoadScene("LobbyScene");
     }
