@@ -13,8 +13,10 @@ public class BODController : MonoBehaviour
     private GameManager mGameManager;
     private HpBar hpBar;
     int damage = 1;
+    int damageResist;
+    int healPer5sec;
     private GameDataManager mGameDataManager;
-
+    private GearAbility gearAbility;
 
     public int getHp()
     {
@@ -39,16 +41,25 @@ public class BODController : MonoBehaviour
         hpBar = mGameManager.getPlayerHp();
         mGameDataManager = GameDataManager.Instance;
         InitPlayerData();
+        StartCoroutine(Healing());
     }
 
     private void InitPlayerData()
     {
-        maxHp = mGameDataManager.GetHp();
-        speed = mGameDataManager.GetSpeed();
+        gearAbility = mGameDataManager.GetGearAbility();
+        maxHp = mGameDataManager.GetHp() + gearAbility.additionalHp;
+        speed = mGameDataManager.GetSpeed() + gearAbility.speed;
         hp = maxHp;
+        damageResist = gearAbility.damageResist;
+        healPer5sec = gearAbility.healPer5sec;
     }
 
     void Update()
+    {
+        ControllByKeyma();
+    }
+
+    private void ControllByKeyma()
     {
         Vector2 direction = new Vector2(0, 0);
         bool isWalking = false;
@@ -58,7 +69,7 @@ public class BODController : MonoBehaviour
             direction = direction + new Vector2(0, 1);
             isWalking = true;
         }
-        if(Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
             direction = direction + new Vector2(-1, 0);
             isWalking = true;
@@ -79,7 +90,6 @@ public class BODController : MonoBehaviour
         {
             Attack();
         }
-
     }
 
     public void SpawnPlayer()
@@ -88,15 +98,24 @@ public class BODController : MonoBehaviour
         hp = maxHp;
     }
 
-    public void Damaged()
+    public void Damaged(int damage = 1)
     {
+        hp -= Mathf.Max(0, damage - damageResist);
         hpBar.ChangeHpBar(hp);
-        hp -= 1;
         mAnimator.SetTrigger("Hurt");
         if (hp <= 0)
         {
             mGameManager.getTmpGameOver().GetComponent<GameOverController>().PlayerDead();
             this.gameObject.SetActive(false);
+        }
+    }
+
+    IEnumerator Healing()
+    {
+        while (hp > 0 && hp < maxHp)
+        {
+            yield return new WaitForSeconds(5f);
+            hp = Mathf.Min(maxHp, hp + healPer5sec);
         }
     }
 

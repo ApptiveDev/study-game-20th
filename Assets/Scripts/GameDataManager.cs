@@ -1,7 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
+public struct GearAbility
+{
+    [SerializeField] public int healPer5sec;
+    [SerializeField] public float speed;
+    [SerializeField] public int damageResist;
+    [SerializeField] public int additionalHp;
+}
 
 public class GameDataManager : MonoBehaviour
 {
@@ -21,6 +30,7 @@ public class GameDataManager : MonoBehaviour
     [SerializeField] private float speed = 5;
     [SerializeField] private int coin = 0;
     [SerializeField] private List<int> playersGears = new List<int>();
+    [SerializeField] private GearAbility gearAbility = new GearAbility();
 
     void Awake()
     {
@@ -43,6 +53,16 @@ public class GameDataManager : MonoBehaviour
             gearSceneManager = GearSceneManager.Instance;
         }
         
+    }
+
+    public GearAbility GetGearAbility()
+    {
+        return gearAbility;
+    }
+
+    public void SetGearAbility(GearAbility gearAbility)
+    {
+        this.gearAbility = gearAbility;
     }
 
     public List<int> GetPlayerGearData()
