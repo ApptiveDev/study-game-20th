@@ -89,6 +89,44 @@ public class GearSceneManager : MonoBehaviour
         SetGearExplainPage(false);
     }
 
+    private string ExpandGearExplainText(string text, int additionalHp, int damageResist, int healPer5sec, float speed)
+    {
+        if (additionalHp > 0)
+        {
+            text = text + "\nadditional Hp += " + Mathf.Abs(additionalHp);
+        }
+        else if (additionalHp < 0)
+        {
+            text = text + "\nadditional Hp -= " + Mathf.Abs(additionalHp);
+        }
+
+        if (damageResist > 0)
+        {
+            text = text + "\ndamageResist += " + Mathf.Abs(damageResist);
+        }
+        else if (damageResist < 0)
+        {
+            text = text + "\ndamageResist -= " + Mathf.Abs(damageResist);
+        }
+        if (healPer5sec > 0)
+        {
+            text = text + "\nhealPer5sec += " + Mathf.Abs(healPer5sec);
+        }
+        else if (healPer5sec < 0)
+        {
+            text = text + "\nhealPer5sec -= " + Mathf.Abs(healPer5sec);
+        }
+
+        if (speed > 0)
+        {
+            text = text + "\nspeed += " + Mathf.Abs(speed);
+        }
+        else if (speed < 0)
+        {
+            text = text + "\nspeed -= " + Mathf.Abs(speed);
+        }
+        return text;
+    }
 
     void InitGears()
     {
@@ -100,7 +138,9 @@ public class GearSceneManager : MonoBehaviour
             {
                 GearData gearData = gearDataContainer.GetGearData(playersGears[i]);
                 GameObject temp = Instantiate(gearData.prefab, gearSpaces[i].position + new Vector3(0, 0, -90), Quaternion.identity);
-                temp.GetComponent<GearItem>().SetGearData(gearData.id, gearData.gearTypeId, i, gearData.gearExplain);
+                string gearExplainText = gearData.gearExplain;
+                gearExplainText = ExpandGearExplainText(gearExplainText, gearData.additionalHp, gearData.damageResist, gearData.healPer5sec, gearData.speed);
+                temp.GetComponent<GearItem>().SetGearData(gearData.id, gearData.gearTypeId, i, gearExplainText);
                 gearSpaces[i].GearIn(gearData.id);
             }
         }
@@ -201,7 +241,13 @@ public class GearSceneManager : MonoBehaviour
         UpdatePlayerGearDatas();
         for (int i = 0; i<3; i++)
         {
+            if (playersGears[i] == -1)
+            {
+                continue;
+            }
+
             GearData gearData = gearDataContainer.GetGearData(playersGears[i]);
+            
             gearAbility.healPer5sec += gearData.healPer5sec;
             gearAbility.speed += gearData.speed;
             gearAbility.damageResist += gearData.damageResist;

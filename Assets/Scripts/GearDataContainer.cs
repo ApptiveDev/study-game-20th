@@ -35,11 +35,15 @@ public class GearDataContainer : ScriptableObject
 
     public GearData GetGearData(int n)
     {
+        if (n == -1)
+        {
+            return new GearData();
+        }
         if (gearDatas.Count == 0)
         {
             InitList();
         }
-
+        
         return gearDatas[n];
     }
 

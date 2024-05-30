@@ -38,6 +38,7 @@ public class GameDataManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(this.gameObject);
+            InitData();
         }
         else
         {
@@ -47,7 +48,7 @@ public class GameDataManager : MonoBehaviour
 
     void Start()
     {
-        InitData();
+        
         if (gearSceneManager == null)
         {
             gearSceneManager = GearSceneManager.Instance;

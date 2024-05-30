@@ -13,10 +13,14 @@ public class Enemy : MonoBehaviour
     protected int attackNum = 0;
     protected Transform playerTransform;
     protected Rigidbody2D mRigid;
+    protected GameManager gameManager;
+    protected int damage = 1;
 
     protected virtual void Start()
     {
-        playerTransform = GameManager.Instance.getPlayer().GetComponent<Transform>();
+        gameManager = GameManager.Instance;
+        playerTransform = gameManager.getPlayer().GetComponent<Transform>();
+        mRigid = GetComponent<Rigidbody2D>();
     }
 
     protected virtual void Move()
@@ -53,7 +57,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            collision.GetComponent<BODController>().Damaged();
+            collision.GetComponent<BODController>().Damaged(damage);
             attackNum += 1;
         }
     }

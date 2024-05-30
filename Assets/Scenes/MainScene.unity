@@ -1975,7 +1975,7 @@ GameObject:
   - component: {fileID: 1858546924}
   - component: {fileID: 1858546922}
   m_Layer: 5
-  m_Name: GameOver
+  m_Name: EndOfGameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2022,8 +2022,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: GameOver (any Key)
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 80a989a05f205471aa12d12934156ebc, type: 2}
+  m_sharedMaterial: {fileID: 2727991079523570903, guid: 80a989a05f205471aa12d12934156ebc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

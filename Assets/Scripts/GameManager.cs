@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
         camera = GameObject.Find("Main Camera");
         gameManagement = GameObject.Find("GameManagement");
         playerHp = GameObject.Find("PlayerHp").GetComponent<HpBar>();
-        tmpGameOver = GameObject.Find("GameOver");
+        tmpGameOver = GameObject.Find("EndOfGameText");
         player = GameObject.Find("BOD");
         playerExp = GameObject.Find("PlayerExp").GetComponent<ExpBar>();
         mExpJamPoolController = gameManagement.GetComponent<ExpJamPoolController>();

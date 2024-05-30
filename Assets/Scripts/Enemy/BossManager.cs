@@ -40,6 +40,7 @@ public class BossManager : MonoBehaviour
         print("end");
         gameManagement.GetComponent<SlimePoolController>().SetSpawnObject(true);
         gameManagement.GetComponent<LongAttackEnemyPoolController>().SetSpawnObject(true);
+        gameManager.getTmpGameOver().GetComponent<EndOfGameController>().GameClearOrOver(true);
     }
 
 }

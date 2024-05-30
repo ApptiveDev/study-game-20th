@@ -105,7 +105,7 @@ public class BODController : MonoBehaviour
         mAnimator.SetTrigger("Hurt");
         if (hp <= 0)
         {
-            mGameManager.getTmpGameOver().GetComponent<GameOverController>().PlayerDead();
+            mGameManager.getTmpGameOver().GetComponent<EndOfGameController>().GameClearOrOver(false);
             this.gameObject.SetActive(false);
         }
     }
