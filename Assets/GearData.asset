@@ -71,7 +71,7 @@ MonoBehaviour:
     gearTypeId: 0
     prefab: {fileID: 1767906259120150785, guid: 9f8653c968e424061b04c220b801f5ef, type: 3}
     gearExplain: weared by hary potter
-    healPer5sec: 2112
+    healPer5sec: 5
     speed: 0
     damageResist: 0
     additionalHp: 0
