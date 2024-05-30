@@ -7,14 +7,14 @@ public class LongAttackEnemyController : Enemy
     LongAttackEnemyWeaponPoolController mArrowPoolController;
     bool isAttacking = false;
 
-
     void Start()
     {
-        objectPoolController = GameManager.Instance.getGameManagement().GetComponent<LongAttackEnemyPoolController>();
+        base.Start();
+        objectPoolController = gameManager.getGameManagement().GetComponent<LongAttackEnemyPoolController>();
         mRigid = gameObject.GetComponent<Rigidbody2D>();
-        mExpJamPoolController = GameManager.Instance.getExpJamPoolController();
-        mCoinPoolController = GameManager.Instance.getGameManagement().GetComponent<CoinPoolController>();
-        mArrowPoolController = GameManager.Instance.getGameManagement().GetComponent<LongAttackEnemyWeaponPoolController>();
+        mExpJamPoolController = gameManager.getExpJamPoolController();
+        mCoinPoolController = gameManager.getGameManagement().GetComponent<CoinPoolController>();
+        mArrowPoolController = gameManager.getGameManagement().GetComponent<LongAttackEnemyWeaponPoolController>();
     }
 
     IEnumerator Attack()

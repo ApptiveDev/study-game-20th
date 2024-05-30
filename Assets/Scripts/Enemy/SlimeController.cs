@@ -7,10 +7,9 @@ public class SlimeController : Enemy
     void Start()
     {
         base.Start();
-        objectPoolController = GameManager.Instance.getGameManagement().GetComponent<SlimePoolController>();
-        mRigid = gameObject.GetComponent<Rigidbody2D>();
-        mCoinPoolController = GameManager.Instance.getGameManagement().GetComponent<CoinPoolController>();
-        mExpJamPoolController = GameManager.Instance.getExpJamPoolController();
+        objectPoolController = gameManager.getGameManagement().GetComponent<SlimePoolController>();
+        mCoinPoolController = gameManager.getGameManagement().GetComponent<CoinPoolController>();
+        mExpJamPoolController = gameManager.getExpJamPoolController();
     }
 
     private void Move()

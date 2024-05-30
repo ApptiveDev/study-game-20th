@@ -12,6 +12,8 @@ public class GateKeeperController : Enemy
     // Start is called before the first frame update
     void Start()
     {
+        base.Start();
+        damage = 5;
         bossManager = GameManager.Instance.getBossManager();
         mRigid = gameObject.GetComponent<Rigidbody2D>();
         mExpJamPoolController = GameManager.Instance.getExpJamPoolController();
@@ -73,7 +75,7 @@ public class GateKeeperController : Enemy
             Move();
         }
         
-        if (hp == 0)
+        if (hp <= 0)
         {
             bossManager.EndBossStage();
             Destroy(gameObject);
