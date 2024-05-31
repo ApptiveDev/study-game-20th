@@ -27,10 +27,11 @@ public class Character : MonoBehaviour
     public bool GameClear = false;
     public GameObject GameOverPanel;
     public GameObject GameClearPanel;
+    public GameObject GamePausePanel;
     
 
     void Start() {
-        animator = GetComponent<Animator>(); // 70 , 939
+        animator = GetComponent<Animator>();
         Instantiate(heart,new Vector3(-30.85f,15.97f,0),Quaternion.identity);
         PointText.transform.position = new Vector3(960,1028.9343f,0);
         LevelText.transform.position = new Vector3(70,939,0);
@@ -45,6 +46,7 @@ public class Character : MonoBehaviour
         HpBar();
         ExpBar();
         PrintImage();
+        EscButton();
         if (GameClear)
         {
             GameClearPanel.SetActive(true);
@@ -66,24 +68,36 @@ public class Character : MonoBehaviour
             Vector2 vec = new Vector2(0f,0f);
 
             if (Input.GetKey (KeyCode.A)) {
-                animator.SetInteger("AnimState",2);
-                transform.localScale = new Vector3(3.3849f,3.3849f,3.3849f);
+                if (Time.timeScale > 0)
+                {
+                    animator.SetInteger("AnimState",2);
+                    transform.localScale = new Vector3(3.3849f,3.3849f,3.3849f);
+                }
                 vec.x = -1f;
             }
 
             if (Input.GetKey (KeyCode.D)) {
-                animator.SetInteger("AnimState",2);
-                transform.localScale = new Vector3(-3.3849f,3.3849f,3.3849f);
+                if (Time.timeScale > 0)
+                {
+                    animator.SetInteger("AnimState",2);
+                    transform.localScale = new Vector3(-3.3849f,3.3849f,3.3849f);
+                }
                 vec.x = 1f;
             }
 
             if (Input.GetKey (KeyCode.W)) {
-                animator.SetInteger("AnimState",2);
+                if (Time.timeScale > 0)
+                {
+                    animator.SetInteger("AnimState",2);
+                }
                 vec.y = 1f;
             }
 
             if (Input.GetKey (KeyCode.S)) {
-                animator.SetInteger("AnimState",2);
+                if (Time.timeScale > 0)
+                {
+                    animator.SetInteger("AnimState",2);
+                }
                 vec.y = -1f;
             }
 
@@ -171,6 +185,18 @@ public class Character : MonoBehaviour
         animator.SetInteger("AnimState",4);
         Time.timeScale = 0.33f;
         GameOverPanel.SetActive(true);
+    }
+
+    private void EscButton()
+    {
+        if (!GameOver && !GameClear)
+        {
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                Time.timeScale = 0f;
+                GamePausePanel.SetActive(true);
+            }
+        }
     }
 
     private void HpBar() {
