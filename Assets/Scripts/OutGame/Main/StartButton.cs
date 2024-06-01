@@ -5,8 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class StartButton : MonoBehaviour
 {
+
     public void StartGame()
     {
+        Character.Speed += PlusCharacterSpeed.SpeedPlus;
+        Character.SwordDamage += PlusSwordDamage.SwordDamagePlus;
+        Character.FireDamage += PlusFireDamage.FireDamagePlus;
         SceneManager.LoadScene("InGameScene");
     }
 }

@@ -6,6 +6,7 @@ public class ExpCoin : MonoBehaviour
 {
     Character CH;
     private Transform Player;
+    bool flag = false;
 
     private void Update()
     {
@@ -31,8 +32,9 @@ public class ExpCoin : MonoBehaviour
         Player = GameObject.Find("Character").GetComponent<Character>().transform;
         float distanceVector = Vector3.Distance(transform.position, Player.position);
 
-        if (distanceVector < 4f)
+        if (distanceVector < 5f || flag)
         {
+            flag = true;
             transform.position = Vector3.MoveTowards(transform.position, Player.position, 25f * Time.deltaTime);
         }
     }

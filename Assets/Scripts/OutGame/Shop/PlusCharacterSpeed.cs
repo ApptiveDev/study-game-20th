@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PlusCharacterSpeed : MonoBehaviour
 {
+    public static float SpeedPlus = 0;
+
     public void Click()
     {
         if (Shop.TotalPoint >= 10)
         {
-            Character.Speed += 0.5f;
+            SpeedPlus += 0.5f;
             Shop.TotalPoint -= 10;
         }
     }

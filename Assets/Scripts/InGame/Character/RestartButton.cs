@@ -25,7 +25,7 @@ public class RestartButton : MonoBehaviour
         RW.Level = 0;
         CH.Level = 0;
         CH.Exp = 0;
-        Character.Speed = 1;
+        Character.Speed = 1 + PlusCharacterSpeed.SpeedPlus;
         Character.Point = 0;
         FireBombSpawner.SpawnTime = 2f;
     }

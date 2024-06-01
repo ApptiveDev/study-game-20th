@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PlusFireDamage : MonoBehaviour
 {
+    public static int FireDamagePlus = 0;
     public void Click()
     {
         if (Shop.TotalPoint >= 10)
         {
-            Character.FireDamage++;
+            FireDamagePlus++;
             Shop.TotalPoint -= 10;
         }
     }
