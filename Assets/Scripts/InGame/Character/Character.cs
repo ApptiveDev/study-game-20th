@@ -7,7 +7,8 @@ using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {   
-    private float CharacterHealthPoint = 10f;
+    private float CharacterHealthPoint;
+    public static float MaxHp = 10f;
     public static float Point = 0;
     public static int SwordDamage = 1;
     public static int FireDamage = 1;
@@ -31,6 +32,7 @@ public class Character : MonoBehaviour
     
 
     void Start() {
+        CharacterHealthPoint = MaxHp;
         animator = GetComponent<Animator>();
         Instantiate(heart,new Vector3(-30.85f,15.97f,0),Quaternion.identity);
         PointText.transform.position = new Vector3(960,1028.9343f,0);
@@ -200,7 +202,7 @@ public class Character : MonoBehaviour
     }
 
     private void HpBar() {
-        float hpPercent = CharacterHealthPoint / 10f;
+        float hpPercent = CharacterHealthPoint / MaxHp;
         hpBarImage.fillAmount = hpPercent;
     }
 

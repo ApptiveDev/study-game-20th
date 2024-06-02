@@ -20,7 +20,7 @@ public class ExpCoin : MonoBehaviour
         if (other.tag == "Player")
         {
             // static변수를 받는거보단 GameObject를 가져와서 불러오는게 충돌적음
-            CH = GameObject.Find("Character").GetComponent<Character>(); 
+            CH = GameObject.Find("Character").GetComponent<Character>();
             CH.Exp++;
             FindObjectOfType<Character>().CheckLevelUp();
             Destroy(gameObject);
