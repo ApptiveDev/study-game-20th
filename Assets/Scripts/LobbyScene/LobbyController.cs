@@ -8,7 +8,7 @@ public class LobbyController : MonoBehaviour
 
     public void LoadGameScene()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("GameScene");
     }
 
     public void LoadStoreScene()
