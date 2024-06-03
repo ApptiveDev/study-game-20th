@@ -12,7 +12,7 @@ public class ClickGlove : MonoBehaviour
 
     public void Click()
     {
-        if (flag) // && Shop.TotalPoint >= 10)
+        if (flag && Shop.TotalPoint >= 10)
         {
             GetComponent<Image>().sprite = SoldOutImage;
             flag = false;
@@ -23,7 +23,7 @@ public class ClickGlove : MonoBehaviour
                 child.gameObject.SetActive(false);
             }
 
-            //Shop.TotalPoint -= 10;
+            Shop.TotalPoint -= 10;
         }
     }
 }
