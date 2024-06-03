@@ -6,18 +6,18 @@ using UnityEngine.EventSystems;
 
 public class Shop : MonoBehaviour
 {
-    [SerializeField] private Image Belt;
-    [SerializeField] private Image Boot;
-    [SerializeField] private Image Glove;
-    [SerializeField] private Image Ring;
+    [SerializeField] private Button Belt;
+    [SerializeField] private Button Boot;
+    [SerializeField] private Button Glove;
+    [SerializeField] private Button Ring;
     [SerializeField] private Image SoldOut;
     public static float TotalPoint = 0f;
     [SerializeField] private Text PointText;
-    private Image[] items;
+    private Button[] items;
 
     void Start()
     {
-        items = new Image[] { Belt, Boot, Glove, Ring };
+        items = new Button[] { Belt, Boot, Glove, Ring };
         RandomItems();
     }
 
@@ -44,19 +44,6 @@ public class Shop : MonoBehaviour
         items[randomInts[1]].transform.position = new Vector2(1321.16f, 360);
         items[randomInts[2]].transform.position = new Vector2(1321.16f, 147);
     }
-
-    // private void OnItemClick(Image clickedItem)
-    // {
-    //     clickedItem.sprite = SoldOut.sprite;
-    //     for (int i = 0; i < items.Length; i++)
-    //     {
-    //         if (items[i] == clickedItem)
-    //         {
-    //             items[i] = SoldOut;
-    //             break;
-    //         }
-    //     }
-    // }
 
     int[] GetUniqueRandomNumbers(int min, int max, int count)
     {
